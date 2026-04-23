@@ -1023,10 +1023,11 @@ export default function Home() {
           </p>
           <p style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "0.65rem",
-            letterSpacing: "0.2em",
+            fontSize: "0.72rem",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "rgba(248,244,238,0.3)",
+            color: "rgba(248,244,238,0.75)",
+            fontWeight: 600,
             marginTop: "0.5rem",
           }}>
             Estratégia e Comunicação · @agenciavirtruvia
@@ -1050,8 +1051,8 @@ export default function Home() {
           <p style={{ fontSize: "0.78rem", color: C.inkLight, marginTop: "0.75rem", letterSpacing: "0.05em" }}>
             Manual de Posicionamento Estratégico de Marca · Versão 2026 · Uso Exclusivo da Equipe de Marca
           </p>
-          <p style={{ fontSize: "0.72rem", color: C.separator, marginTop: "0.5rem", letterSpacing: "0.08em" }}>
-            Estratégia e Comunicação · <span style={{ color: C.navy, opacity: 0.7 }}>@agenciavirtruvia</span> · 2026
+          <p style={{ fontSize: "0.78rem", color: C.inkMid, marginTop: "0.5rem", letterSpacing: "0.08em", fontWeight: 600 }}>
+            Estratégia e Comunicação · <span style={{ color: C.navy }}>@agenciavirtruvia</span> · 2026
           </p>
         </div>
       </footer>
