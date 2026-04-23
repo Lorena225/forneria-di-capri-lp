@@ -408,7 +408,7 @@ export default function Home() {
               <img
                 src="/manus-storage/forneria_casa_ambiente_8bd51d0e.jpg"
                 alt="Forneria di Capri — A casa"
-                style={{ width: "100%", height: "480px", objectFit: "cover", objectPosition: "center 30%", borderRadius: "1px", filter: "brightness(0.92) saturate(1.05)" }}
+                style={{ width: "100%", height: "560px", objectFit: "cover", objectPosition: "center top", borderRadius: "1px", filter: "brightness(0.95) saturate(1.05)" }}
               />
               <div style={{
                 position: "absolute",
