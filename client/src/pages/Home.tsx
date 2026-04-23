@@ -264,7 +264,7 @@ export default function Home() {
             Posicionamento de Marca
           </span>
           <span style={{ color: C.separator, fontSize: "0.65rem" }}>·</span>
-          <span style={{ color: C.inkLight, fontSize: "0.65rem", letterSpacing: "0.1em" }}>2025</span>
+          <span style={{ color: C.inkLight, fontSize: "0.7rem", letterSpacing: "0.1em" }}>2026</span>
         </div>
       </nav>
 
@@ -333,7 +333,7 @@ export default function Home() {
             letterSpacing: "0.18em",
             textTransform: "uppercase",
           }}>
-            Park Sul · Asa Sul · Versão 2025
+            Park Sul · Asa Sul · Versão 2026
           </p>
         </div>
         {/* Scroll indicator */}
@@ -533,11 +533,11 @@ export default function Home() {
                 </p>
                 <div style={{ borderTop: `1px solid ${C.separator}`, paddingTop: "1rem" }}>
                   <div style={{ marginBottom: "0.75rem" }}>
-                    <span style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No digital</span>
+                    <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No digital</span>
                     <p style={{ fontSize: "0.9rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.digital}</p>
                   </div>
                   <div>
-                    <span style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No presencial</span>
+                    <span style={{ fontSize: "0.7rem", letterSpacing: "0.2em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No presencial</span>
                     <p style={{ fontSize: "0.9rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.presencial}</p>
                   </div>
                 </div>
@@ -580,7 +580,7 @@ export default function Home() {
                 boxShadow: "0 8px 32px rgba(28,20,16,0.1)",
                 maxWidth: "210px",
               }}>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.82rem", fontStyle: "italic", color: C.gold, lineHeight: 1.65 }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1rem", fontStyle: "italic", color: C.gold, lineHeight: 1.65 }}>
                   "A Forneria fala como quem sabe receber."
                 </p>
               </div>
@@ -607,7 +607,7 @@ export default function Home() {
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", color: C.ink, fontStyle: "italic" }}>
                   O Curador Acolhedor
                 </p>
-                <p style={{ fontSize: "0.88rem", color: C.inkMid, lineHeight: 1.85, marginTop: "0.75rem" }}>
+                <p style={{ fontSize: "0.97rem", color: C.inkMid, lineHeight: 1.85, marginTop: "0.75rem" }}>
                   A marca fala como um excelente anfitrião que conhece o mundo, entende profundamente de vinhos e de gastronomia de alta qualidade, mas deixa os convidados completamente à vontade. É uma voz madura, serena, que transmite autoridade pelo domínio do assunto.
                 </p>
               </div>
@@ -620,7 +620,7 @@ export default function Home() {
                   {["Calor", "Segurança", "Bom gosto", "Sensação de casa", "Apetite elegante"].map(item => (
                     <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                       <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: C.gold, flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.83rem", color: C.inkMid }}>{item}</span>
+                      <span style={{ fontSize: "0.95rem", color: C.inkMid }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -629,7 +629,7 @@ export default function Home() {
                   {["Cara", "Urgente", "Promocional"].map(item => (
                     <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
                       <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: C.separator, flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.83rem", color: C.inkLight }}>{item}</span>
+                      <span style={{ fontSize: "0.95rem", color: C.inkLight }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -768,7 +768,7 @@ export default function Home() {
                         { label: "O que afasta", value: persona.afasta, accent: C.inkLight },
                       ].map(item => (
                         <div key={item.label} style={{ padding: "1rem", background: C.ivory, border: `1px solid ${C.separator}` }}>
-                          <span style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: item.accent, fontWeight: 700, display: "block", marginBottom: "0.4rem" }}>
+                          <span style={{ fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: item.accent, fontWeight: 700, display: "block", marginBottom: "0.4rem" }}>
                             {item.label}
                           </span>
                           <p style={{ fontSize: "0.95rem", color: C.inkMid, lineHeight: 1.8 }}>{item.value}</p>
@@ -844,8 +844,8 @@ export default function Home() {
                   marginBottom: "0.75rem",
                 }}>{canal.canal}</h4>
                 <span style={{
-                  fontSize: "0.65rem",
-                  letterSpacing: "0.2em",
+                  fontSize: "0.72rem",
+                  letterSpacing: "0.18em",
                   textTransform: "uppercase",
                   color: C.gold,
                   fontWeight: 700,
@@ -914,8 +914,8 @@ export default function Home() {
                       border: `1px solid ${C.separator}`,
                     }}>
                       <span style={{
-                        fontSize: "0.62rem",
-                        letterSpacing: "0.2em",
+                        fontSize: "0.7rem",
+                        letterSpacing: "0.18em",
                         textTransform: "uppercase",
                         color: C.gold,
                         fontWeight: 700,
@@ -1019,7 +1019,17 @@ export default function Home() {
             color: "rgba(248,244,238,0.45)",
             marginTop: "1.5rem",
           }}>
-            Forneria di Capri · Documento Interno · Confidencial · 2025
+            Forneria di Capri · Documento Interno · Confidencial · 2026
+          </p>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "0.65rem",
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "rgba(248,244,238,0.3)",
+            marginTop: "0.5rem",
+          }}>
+            Estratégia e Comunicação · @agenciavirtruvia
           </p>
         </div>
       </section>
@@ -1034,11 +1044,14 @@ export default function Home() {
           <div style={{ marginBottom: "1rem", display: "flex", justifyContent: "center", opacity: 0.85 }}>
             <ForneriLogo height={52} color={C.inkMid} />
           </div>
-          <p style={{ fontSize: "0.72rem", color: C.inkLight, letterSpacing: "0.15em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: "0.78rem", color: C.inkLight, letterSpacing: "0.15em", textTransform: "uppercase" }}>
             Park Sul · Asa Sul · Brasília
           </p>
-          <p style={{ fontSize: "0.68rem", color: C.separator, marginTop: "0.75rem" }}>
-            Manual de Posicionamento Estratégico de Marca · Versão 2025 · Uso Exclusivo da Equipe de Marca
+          <p style={{ fontSize: "0.78rem", color: C.inkLight, marginTop: "0.75rem", letterSpacing: "0.05em" }}>
+            Manual de Posicionamento Estratégico de Marca · Versão 2026 · Uso Exclusivo da Equipe de Marca
+          </p>
+          <p style={{ fontSize: "0.72rem", color: C.separator, marginTop: "0.5rem", letterSpacing: "0.08em" }}>
+            Estratégia e Comunicação · <span style={{ color: C.navy, opacity: 0.7 }}>@agenciavirtruvia</span> · 2026
           </p>
         </div>
       </footer>
