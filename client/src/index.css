@@ -1,7 +1,7 @@
 /*
- * FORNERIA DI CAPRI — Design System (Light Edition)
- * Philosophy: "Papel de Carta Italiano — Luz, Linho e Ouro"
- * Warm editorial light with aged gold accents and deep ink typography
+ * FORNERIA DI CAPRI — Design System (Light Edition, v3)
+ * Philosophy: "Papel de Carta Italiano — Luz, Linho e Azul"
+ * Warm editorial light with aged gold + brand navy blue accents
  *
  * Color Palette:
  *   --ivory:        #F8F4EE  (base background — warm ivory parchment)
@@ -11,14 +11,18 @@
  *   --gold-bright:  #C9A96E  (hover/highlight gold)
  *   --amber:        #B5622A  (warmth accent — terracotta/oven)
  *   --ink:          #1C1410  (primary text — deep warm black)
- *   --ink-mid:      #4A3C30  (secondary text — warm brown)
- *   --ink-light:    #7A6A58  (muted text — warm taupe)
+ *   --ink-mid:      #3A2E24  (secondary text — warm brown, slightly darker)
+ *   --ink-light:    #6A5C4E  (muted text — warm taupe)
  *   --separator:    #D8CCBC  (subtle dividers — warm beige)
- *   --navy-accent:  #1A2B5E  (deep navy for contrast blocks)
+ *   --navy:         #1A2B5E  (brand navy — primary blue)
+ *   --navy-mid:     #243870  (brand navy medium)
+ *   --navy-light:   #3D5A9E  (brand navy light — hover states)
+ *   --navy-pale:    #EEF1F8  (very light navy tint for backgrounds)
  *
  * Typography:
- *   Display: Playfair Display (serif, Italian elegance)
- *   Body: Lato (clean, readable)
+ *   Display/Headings: Cormorant Garamond (elegant, contemporary, highly legible serif)
+ *   Body: DM Sans (clean, modern, excellent readability)
+ *   Script: Dancing Script (logo cursive only)
  */
 
 @import "tailwindcss";
@@ -60,19 +64,19 @@
   --card-foreground: oklch(0.15 0.02 50);
   --popover: oklch(0.97 0.012 75);
   --popover-foreground: oklch(0.15 0.02 50);
-  --primary: oklch(0.55 0.07 70);
+  --primary: oklch(0.35 0.12 260);
   --primary-foreground: oklch(0.97 0.012 75);
   --secondary: oklch(0.91 0.018 75);
   --secondary-foreground: oklch(0.25 0.025 55);
   --muted: oklch(0.91 0.018 75);
   --muted-foreground: oklch(0.50 0.04 65);
-  --accent: oklch(0.55 0.07 70);
+  --accent: oklch(0.35 0.12 260);
   --accent-foreground: oklch(0.97 0.012 75);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
   --border: oklch(0.85 0.02 75);
   --input: oklch(0.85 0.02 75);
-  --ring: oklch(0.55 0.07 70);
+  --ring: oklch(0.35 0.12 260);
 
   /* Forneria brand tokens */
   --ivory:        #F8F4EE;
@@ -82,10 +86,13 @@
   --gold-bright:  #C9A96E;
   --amber:        #B5622A;
   --ink:          #1C1410;
-  --ink-mid:      #4A3C30;
-  --ink-light:    #7A6A58;
+  --ink-mid:      #3A2E24;
+  --ink-light:    #6A5C4E;
   --separator:    #D8CCBC;
-  --navy-accent:  #1A2B5E;
+  --navy:         #1A2B5E;
+  --navy-mid:     #243870;
+  --navy-light:   #3D5A9E;
+  --navy-pale:    #EEF1F8;
 }
 
 @layer base {
@@ -94,12 +101,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Lato', sans-serif;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
     background-color: #F8F4EE;
     color: #1C1410;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
   }
 }
 
@@ -143,17 +154,17 @@
     width: 100%;
     height: 1px;
     background: linear-gradient(90deg, transparent, #A8844A 30%, #A8844A 70%, transparent);
-    opacity: 0.35;
+    opacity: 0.3;
   }
 
-  /* Section label */
+  /* Section label — now uses navy for a brand-blue touch */
   .section-label {
-    font-family: 'Lato', sans-serif;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: #A8844A;
+    color: #1A2B5E;
   }
 
   /* Scroll reveal */
@@ -168,29 +179,45 @@
     transform: translateY(0);
   }
 
-  /* Word card hover */
+  /* Word card hover — navy left border on hover */
   .word-card {
     transition: all 0.4s ease;
     border: 1px solid rgba(168, 132, 74, 0.2);
+    border-left: 2px solid rgba(26, 43, 94, 0.15);
     background: rgba(242, 235, 224, 0.6);
   }
 
   .word-card:hover {
-    border-color: rgba(168, 132, 74, 0.55);
-    background: rgba(234, 224, 208, 0.9);
+    border-left-color: #1A2B5E;
+    border-color: rgba(26, 43, 94, 0.25);
+    background: rgba(238, 241, 248, 0.55);
     transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(168, 132, 74, 0.12);
+    box-shadow: 0 12px 40px rgba(26, 43, 94, 0.08);
   }
 
-  /* Persona card */
+  /* Persona card — navy left border */
   .persona-card {
-    border-left: 2px solid #A8844A;
+    border-left: 3px solid #1A2B5E;
     background: rgba(242, 235, 224, 0.5);
     transition: all 0.3s ease;
   }
 
   .persona-card:hover {
-    background: rgba(234, 224, 208, 0.8);
+    background: rgba(238, 241, 248, 0.6);
+  }
+
+  /* Navy accent chip — for labels and badges */
+  .navy-chip {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1A2B5E;
+    background: rgba(26, 43, 94, 0.07);
+    border: 1px solid rgba(26, 43, 94, 0.18);
+    padding: 0.25rem 0.75rem;
   }
 
   /* Scrollbar styling */
@@ -208,6 +235,6 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #A8844A;
+    background: #1A2B5E;
   }
 }

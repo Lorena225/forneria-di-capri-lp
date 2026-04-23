@@ -1,8 +1,8 @@
 /*
- * FORNERIA DI CAPRI — Landing Page (Light Edition)
- * Design: "Papel de Carta Italiano — Luz, Linho e Ouro"
- * Paleta: Marfim (#F8F4EE) + Dourado envelhecido (#A8844A) + Tinta quente (#1C1410)
- * Tipografia: Playfair Display (display) + Lato (corpo)
+ * FORNERIA DI CAPRI — Landing Page (Light Edition, v3)
+ * Design: "Papel de Carta Italiano — Luz, Linho e Azul"
+ * Paleta: Marfim (#F8F4EE) + Dourado (#A8844A) + Azul Marca (#1A2B5E) + Tinta (#1C1410)
+ * Tipografia: Cormorant Garamond (display/headings) + DM Sans (corpo)
  */
 
 import { useEffect, useState } from "react";
@@ -25,7 +25,7 @@ function ForneriLogo({ height = 44, color = "#1C1410" }: { height?: number; colo
         x="160"
         y="46"
         textAnchor="middle"
-        fontFamily="'Playfair Display', Georgia, serif"
+        fontFamily="'Cormorant Garamond', Georgia, serif"
         fontSize="38"
         fontWeight="700"
         letterSpacing="10"
@@ -64,15 +64,17 @@ const C = {
   ivory:      "#F8F4EE",
   ivoryMid:   "#F2EBE0",
   ivoryDeep:  "#EAE0D0",
+  navyPale:   "#EEF1F8",   // very light navy tint
   gold:       "#A8844A",
   goldBright: "#C9A96E",
   amber:      "#B5622A",
   ink:        "#1C1410",
-  inkMid:     "#4A3C30",
-  inkLight:   "#7A6A58",
+  inkMid:     "#3A2E24",   // slightly darker for better legibility
+  inkLight:   "#6A5C4E",
   separator:  "#D8CCBC",
-  navy:       "#1A2B5E",
-  navyLight:  "#243870",
+  navy:       "#1A2B5E",   // brand navy — primary blue
+  navyMid:    "#243870",
+  navyLight:  "#3D5A9E",
 };
 
 // Scroll reveal hook
@@ -103,12 +105,12 @@ function GoldOrnament() {
   );
 }
 
-// Section label
+// Section label — número em dourado + linha + label em azul da marca
 function SectionLabel({ number, label }: { number: string; label: string }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-      <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.82rem", fontStyle: "italic", color: C.gold }}>{number}</span>
-      <div style={{ height: "1px", width: "28px", background: C.gold, opacity: 0.45 }} />
+      <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.9rem", fontStyle: "italic", color: C.gold, fontWeight: 500 }}>{number}</span>
+      <div style={{ height: "1px", width: "28px", background: C.navy, opacity: 0.3 }} />
       <span className="section-label">{label}</span>
     </div>
   );
@@ -245,7 +247,7 @@ export default function Home() {
   useScrollReveal();
 
   return (
-    <div style={{ backgroundColor: C.ivory, color: C.ink, fontFamily: "'Lato', sans-serif", overflowX: "hidden" }}>
+    <div style={{ backgroundColor: C.ivory, color: C.ink, fontFamily: "'DM Sans', sans-serif", overflowX: "hidden" }}>
 
       {/* ─── NAVIGATION ─────────────────────────────────────────────── */}
       <nav style={{
@@ -258,11 +260,11 @@ export default function Home() {
       }}>
         <ForneriLogo height={44} color={C.ink} />
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ color: C.gold, fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", fontFamily: "'Lato', sans-serif" }}>
+          <span style={{ color: C.navy, fontSize: "0.65rem", letterSpacing: "0.18em", textTransform: "uppercase", fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
             Posicionamento de Marca
           </span>
           <span style={{ color: C.separator, fontSize: "0.65rem" }}>·</span>
-          <span style={{ color: C.inkLight, fontSize: "0.62rem", letterSpacing: "0.1em" }}>2025</span>
+          <span style={{ color: C.inkLight, fontSize: "0.65rem", letterSpacing: "0.1em" }}>2025</span>
         </div>
       </nav>
 
@@ -276,23 +278,34 @@ export default function Home() {
           backgroundPosition: "center 30%",
           filter: "brightness(0.28) saturate(0.8)",
         }} />
-        {/* Warm ivory vignette overlay */}
+        {/* Navy-tinted vignette overlay — brand blue touch */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(180deg, rgba(28,20,16,0.25) 0%, rgba(28,20,16,0.05) 40%, rgba(28,20,16,0.55) 80%, rgba(28,20,16,0.92) 100%)",
+          background: "linear-gradient(180deg, rgba(26,43,94,0.18) 0%, rgba(28,20,16,0.05) 40%, rgba(26,43,94,0.45) 80%, rgba(26,43,94,0.88) 100%)",
         }} />
         {/* Content */}
         <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "0 1.5rem", maxWidth: "900px" }}>
           <div style={{ marginBottom: "1.5rem" }}>
-            <span style={{ color: "rgba(201,169,110,0.9)", fontSize: "0.62rem", letterSpacing: "0.4em", textTransform: "uppercase", fontFamily: "'Lato', sans-serif", fontWeight: 700 }}>
+            <span style={{
+              color: "rgba(255,255,255,0.75)",
+              fontSize: "0.65rem",
+              letterSpacing: "0.35em",
+              textTransform: "uppercase",
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: 500,
+              background: "rgba(26,43,94,0.35)",
+              border: "1px solid rgba(255,255,255,0.15)",
+              padding: "0.3rem 1rem",
+              display: "inline-block",
+            }}>
               Documento Interno · Uso Exclusivo da Equipe de Marca
             </span>
           </div>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
-            fontWeight: 900,
-            lineHeight: 1.05,
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(3rem, 8vw, 6.5rem)",
+            fontWeight: 700,
+            lineHeight: 1.0,
             color: "#F8F4EE",
             marginBottom: "0.5rem",
             textShadow: "0 4px 40px rgba(0,0,0,0.4)",
@@ -303,7 +316,7 @@ export default function Home() {
           </h1>
           <GoldOrnament />
           <p style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(1rem, 2.5vw, 1.35rem)",
             fontStyle: "italic",
             color: "#C9A96E",
@@ -313,7 +326,7 @@ export default function Home() {
             Casa italiana contemporânea de Brasília
           </p>
           <p style={{
-            fontFamily: "'Lato', sans-serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: "0.78rem",
             color: "rgba(248,244,238,0.55)",
             marginTop: "0.75rem",
@@ -338,22 +351,23 @@ export default function Home() {
         <div className="container">
           <div className="reveal" style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
             <SectionLabel number="I." label="Apresentação" />
-            <p style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
-              lineHeight: 1.65,
-              color: C.ink,
-              marginBottom: "2rem",
-            }}>
-              Este manual reúne em um único documento a totalidade da estratégia de posicionamento da Forneria di Capri.
-            </p>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: "clamp(1.4rem, 2.8vw, 2rem)",
+            lineHeight: 1.6,
+            color: C.ink,
+            marginBottom: "2rem",
+            fontWeight: 400,
+          }}>
+            Este manual reúne em um único documento a totalidade da estratégia de posicionamento da Forneria di Capri.
+          </p>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
               Ele não é um guia de estilo estático, nem um conjunto de normas genéricas de comunicação. É o mapa que orienta cada decisão de marca, da escolha das palavras de uma legenda à forma como um garçom finaliza a conta de uma mesa.
             </p>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
               A Forneria di Capri tem o que poucos restaurantes em Brasília conseguem acumular em menos de três anos: produto técnico de padrão internacional, dois endereços consolidados, nota 4.8 no Google e a consultoria de um pizzaiolo que figura entre os três melhores do mundo. O que falta, e é o que este manual endereça, é traduzir toda essa substância em uma comunicação que faça jus ao que a casa entrega.
             </p>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid }}>
               Cada capítulo foi construído com base no diagnóstico completo da operação, no comportamento real dos clientes atuais e nos territórios de crescimento que a marca precisa ocupar com clareza nos próximos ciclos. Nenhum dado aqui foi inventado. Nenhuma recomendação é genérica.
             </p>
           </div>
@@ -371,7 +385,7 @@ export default function Home() {
             <div>
               <SectionLabel number="01." label="A Alma da Marca" />
               <h2 style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Cormorant Garamond', serif",
                 fontSize: "clamp(1.9rem, 4vw, 3rem)",
                 fontWeight: 700,
                 color: C.ink,
@@ -380,13 +394,13 @@ export default function Home() {
               }}>
                 Quem é a<br /><span style={{ color: C.gold }}>Forneria di Capri</span>
               </h2>
-              <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.4rem" }}>
                 A Forneria di Capri não nasceu para disputar espaço como mais uma pizzaria de Brasília. Ela nasceu para ser o lugar que as pessoas escolhem quando querem sair de casa para viver uma noite bonita, comer muito bem e estar num ambiente que faz sentido do começo ao fim.
               </p>
-              <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.4rem" }}>
                 Sua força não está apenas nas pizzas mais saborosas, mas na soma entre uma massa perfeitamente preparada, sabores que fogem do comum, atmosfera de casa desejada e uma experiência que conversa com casais, famílias e encontros que pedem vinho, conversa e permanência à mesa.
               </p>
-              <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid }}>
+              <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid }}>
                 Enquanto os concorrentes mais consolidados ocupam o território da história e do tempo de mercado, a Forneria tem espaço para ocupar um lugar mais atual: o da <strong style={{ color: C.ink }}>Nova casa italiana de Brasília</strong>, com técnica, personalidade e ambiente.
               </p>
             </div>
@@ -407,7 +421,7 @@ export default function Home() {
                 maxWidth: "270px",
               }}>
                 <p style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "0.9rem",
                   fontStyle: "italic",
                   color: C.gold,
@@ -429,10 +443,10 @@ export default function Home() {
             position: "relative",
             overflow: "hidden",
           }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, opacity: 0.5 }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: `linear-gradient(90deg, transparent, ${C.navy} 30%, ${C.gold} 50%, ${C.navy} 70%, transparent)`, opacity: 0.35 }} />
             <span className="section-label" style={{ marginBottom: "1.5rem", display: "block" }}>Posicionamento em uma linha</span>
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.15rem, 2.5vw, 1.65rem)",
               fontStyle: "italic",
               color: C.ink,
@@ -444,7 +458,7 @@ export default function Home() {
             </p>
             <GoldOrnament />
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(0.95rem, 2vw, 1.25rem)",
               color: C.gold,
               fontStyle: "italic",
@@ -459,14 +473,14 @@ export default function Home() {
           {/* O que a marca vende de verdade */}
           <div className="reveal" style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center", marginBottom: "5rem" }}>
             <SectionLabel number="—" label="O Que a Marca Vende de Verdade" />
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.4rem" }}>
               Um ticket médio de R$ 200 por comanda não está ligado apenas ao produto servido, mas à experiência que criamos nas pessoas. Entregamos mais do que pizzas — estamos proporcionando estados emocionais, rituais de pertencimento e momentos de transição no dia do cliente.
             </p>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.4rem" }}>
               Cada mesa que ocupamos é um espaço onde conexões acontecem, histórias são compartilhadas e a rotina ganha significado. Nosso papel é tornar esses momentos possíveis com consistência, intenção e identidade.
             </p>
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "1.15rem",
               fontStyle: "italic",
               color: C.gold,
@@ -484,7 +498,7 @@ export default function Home() {
           <div className="reveal" style={{ textAlign: "center", marginBottom: "4rem" }}>
             <SectionLabel number="—" label="As Seis Palavras que Representam a Marca" />
             <h2 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 700,
               color: C.ink,
@@ -492,7 +506,7 @@ export default function Home() {
             }}>
               Um vocabulário próprio
             </h2>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
               Marcas que tentam dizer tudo acabam não sendo reconhecidas por nada. Aqui, a escolha é deliberada: reduzir o vocabulário para ampliar a presença. Cada palavra funciona como um ponto de ancoragem que orienta como a marca se expressa, decide e se comporta.
             </p>
           </div>
@@ -506,7 +520,7 @@ export default function Home() {
               >
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "1rem" }}>
                   <span style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "1.9rem",
                     fontWeight: 900,
                     color: C.gold,
@@ -514,17 +528,17 @@ export default function Home() {
                   }}>{p.word}</span>
                   <div style={{ flex: 1, height: "1px", background: C.separator }} />
                 </div>
-                <p style={{ fontSize: "0.88rem", lineHeight: 1.85, color: C.inkMid, marginBottom: "1.5rem" }}>
+                <p style={{ fontSize: "0.97rem", lineHeight: 1.85, color: C.inkMid, marginBottom: "1.5rem" }}>
                   {p.description}
                 </p>
                 <div style={{ borderTop: `1px solid ${C.separator}`, paddingTop: "1rem" }}>
                   <div style={{ marginBottom: "0.75rem" }}>
                     <span style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No digital</span>
-                    <p style={{ fontSize: "0.8rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.digital}</p>
+                    <p style={{ fontSize: "0.9rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.digital}</p>
                   </div>
                   <div>
                     <span style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No presencial</span>
-                    <p style={{ fontSize: "0.8rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.presencial}</p>
+                    <p style={{ fontSize: "0.9rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.presencial}</p>
                   </div>
                 </div>
               </div>
@@ -532,11 +546,11 @@ export default function Home() {
           </div>
 
           <div className="reveal" style={{ textAlign: "center", marginTop: "4rem", maxWidth: "660px", margin: "4rem auto 0" }}>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
               Com o tempo, o cliente deixa de perceber essas palavras de forma consciente e passa a sentir o que elas representam. Elas constroem um território emocional, reforçam identidade e tornam a experiência consistente em todos os pontos de contato.
             </p>
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "1.1rem",
               fontStyle: "italic",
               color: C.gold,
@@ -566,7 +580,7 @@ export default function Home() {
                 boxShadow: "0 8px 32px rgba(28,20,16,0.1)",
                 maxWidth: "210px",
               }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.82rem", fontStyle: "italic", color: C.gold, lineHeight: 1.65 }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.82rem", fontStyle: "italic", color: C.gold, lineHeight: 1.65 }}>
                   "A Forneria fala como quem sabe receber."
                 </p>
               </div>
@@ -575,7 +589,7 @@ export default function Home() {
             <div>
               <SectionLabel number="02." label="Tom de Voz" />
               <h2 style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Cormorant Garamond', serif",
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
                 fontWeight: 700,
                 color: C.ink,
@@ -584,21 +598,20 @@ export default function Home() {
               }}>
                 Como a Marca Fala
               </h2>
-              <div style={{
-                padding: "1.5rem",
-                background: C.ivoryMid,
-                borderLeft: `3px solid ${C.gold}`,
+              <div style={{ padding: "1.5rem",
+                background: C.navyPale,
+                borderLeft: `3px solid ${C.navy}`,
                 marginBottom: "2rem",
               }}>
                 <span className="section-label" style={{ marginBottom: "0.5rem", display: "block" }}>Arquétipo</span>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.05rem", color: C.ink, fontStyle: "italic" }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.05rem", color: C.ink, fontStyle: "italic" }}>
                   O Curador Acolhedor
                 </p>
                 <p style={{ fontSize: "0.88rem", color: C.inkMid, lineHeight: 1.85, marginTop: "0.75rem" }}>
                   A marca fala como um excelente anfitrião que conhece o mundo, entende profundamente de vinhos e de gastronomia de alta qualidade, mas deixa os convidados completamente à vontade. É uma voz madura, serena, que transmite autoridade pelo domínio do assunto.
                 </p>
               </div>
-              <p style={{ fontSize: "0.93rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "1.02rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
                 Sem afetação, sem exageros, sem o peso de uma linguagem publicitária muito forçada. A comunicação é direta, envolvente e naturalmente convidativa. É uma marca que se expressa com segurança, mas nunca com rigidez — com elegância, mas sem criar distância — e com apetite, mas sem excessos.
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginTop: "2rem" }}>
@@ -628,7 +641,7 @@ export default function Home() {
           <div className="reveal" style={{ marginTop: "5rem" }}>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <span className="section-label">Tradução Prática do Tom</span>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.75rem", color: C.ink, marginTop: "0.5rem" }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.75rem", color: C.ink, marginTop: "0.5rem" }}>
                 Em vez de dizer... A Forneria diz
               </h3>
             </div>
@@ -643,7 +656,7 @@ export default function Home() {
                   background: C.ivoryMid,
                   border: `1px solid ${C.separator}`,
                 }}>
-                  <p style={{ fontSize: "0.88rem", color: C.inkLight, fontStyle: "italic", lineHeight: 1.65 }}>
+                  <p style={{ fontSize: "0.97rem", color: C.inkLight, fontStyle: "italic", lineHeight: 1.65 }}>
                     "{ex.errado}"
                   </p>
                   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.2rem" }}>
@@ -651,7 +664,7 @@ export default function Home() {
                     <span style={{ color: C.gold, fontSize: "1rem" }}>→</span>
                     <div style={{ width: "1px", height: "16px", background: C.separator }} />
                   </div>
-                  <p style={{ fontSize: "0.88rem", color: C.ink, lineHeight: 1.65 }}>
+                  <p style={{ fontSize: "0.97rem", color: C.ink, lineHeight: 1.65 }}>
                     "{ex.certo}"
                   </p>
                 </div>
@@ -675,7 +688,7 @@ export default function Home() {
         }}>
           <div style={{ textAlign: "center" }}>
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(1.3rem, 3vw, 2rem)",
               fontStyle: "italic",
               color: "#F8F4EE",
@@ -697,7 +710,7 @@ export default function Home() {
           <div className="reveal" style={{ textAlign: "center", marginBottom: "4rem" }}>
             <SectionLabel number="03." label="Público-Alvo" />
             <h2 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 700,
               color: C.ink,
@@ -705,7 +718,7 @@ export default function Home() {
             }}>
               Cinco Arquétipos Comportamentais
             </h2>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
               Entender o cliente da Forneria di Capri exige ir além da demografia. Um ticket médio de R$ 200 por comanda não está ligado à necessidade de alimentação, mas ao desejo de viver algo específico. O cliente busca desacelerar o dia, criar momentos de conexão e transformar uma refeição em experiência.
             </p>
           </div>
@@ -721,13 +734,13 @@ export default function Home() {
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
                     <span style={{
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: "'Cormorant Garamond', serif",
                       fontSize: "1.4rem",
                       fontWeight: 900,
                       color: "rgba(168,132,74,0.35)",
                     }}>{persona.num}</span>
                     <h3 style={{
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: "'Cormorant Garamond', serif",
                       fontSize: "1.1rem",
                       fontWeight: 600,
                       color: C.ink,
@@ -744,7 +757,7 @@ export default function Home() {
 
                 {activePersona === i && (
                   <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: `1px solid ${C.separator}` }}>
-                    <p style={{ fontSize: "0.88rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
+                    <p style={{ fontSize: "0.97rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
                       {persona.frequencia}
                     </p>
                     <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "0.75rem" }}>
@@ -758,7 +771,7 @@ export default function Home() {
                           <span style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: item.accent, fontWeight: 700, display: "block", marginBottom: "0.4rem" }}>
                             {item.label}
                           </span>
-                          <p style={{ fontSize: "0.82rem", color: C.inkMid, lineHeight: 1.75 }}>{item.value}</p>
+                          <p style={{ fontSize: "0.95rem", color: C.inkMid, lineHeight: 1.8 }}>{item.value}</p>
                         </div>
                       ))}
                     </div>
@@ -770,7 +783,7 @@ export default function Home() {
 
           <div className="reveal" style={{ textAlign: "center", marginTop: "4rem", maxWidth: "660px", margin: "4rem auto 0" }}>
             <p style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "1.1rem",
               fontStyle: "italic",
               color: C.gold,
@@ -788,7 +801,7 @@ export default function Home() {
           <div className="reveal" style={{ textAlign: "center", marginBottom: "4rem" }}>
             <SectionLabel number="04." label="Sistema Digital de Marca" />
             <h2 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Cormorant Garamond', serif",
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 700,
               color: C.ink,
@@ -797,7 +810,7 @@ export default function Home() {
               Do Desejo à Fidelização:<br />
               <span style={{ color: C.gold }}>O Funil Sensorial</span>
             </h2>
-            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
+            <p style={{ fontSize: "1.05rem", lineHeight: 1.9, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
               O crescimento da Forneria não está ligado ao volume de conteúdo, mas à coerência da experiência ao longo de toda a jornada. Antes de escolher, o cliente sente. Antes de decidir, ele imagina. Antes de voltar, ele compara o que viveu com o que esperava.
             </p>
           </div>
@@ -815,7 +828,7 @@ export default function Home() {
               }}>
                 <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, opacity: 0.5 }} />
                 <span style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "2.2rem",
                   fontWeight: 900,
                   color: `rgba(168,132,74,0.1)`,
@@ -824,7 +837,7 @@ export default function Home() {
                   right: "1rem",
                 }}>{String(i + 1).padStart(2, "0")}</span>
                 <h4 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "0.97rem",
                   fontWeight: 600,
                   color: C.ink,
@@ -839,7 +852,7 @@ export default function Home() {
                   display: "block",
                   marginBottom: "0.5rem",
                 }}>{canal.funcao}</span>
-                <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.75 }}>{canal.descricao}</p>
+                <p style={{ fontSize: "0.95rem", color: C.inkMid, lineHeight: 1.8 }}>{canal.descricao}</p>
               </div>
             ))}
           </div>
@@ -848,7 +861,7 @@ export default function Home() {
           <div className="reveal" style={{ marginBottom: "5rem" }}>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <SectionLabel number="4.1" label="Instagram: A Vitrine Sensorial" />
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.75rem", color: C.ink, marginBottom: "1rem" }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.75rem", color: C.ink, marginBottom: "1rem" }}>
                 As Cinco Frentes Editoriais
               </h3>
               <p style={{ fontSize: "0.93rem", color: C.inkMid, maxWidth: "580px", margin: "0 auto" }}>
@@ -864,13 +877,13 @@ export default function Home() {
                   borderLeft: `3px solid rgba(168,132,74,0.5)`,
                 }}>
                   <h4 style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "0.97rem",
                     fontWeight: 600,
                     color: C.gold,
                     marginBottom: "0.75rem",
                   }}>{ed.title}</h4>
-                  <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.85 }}>{ed.desc}</p>
+                  <p style={{ fontSize: "0.95rem", color: C.inkMid, lineHeight: 1.85 }}>{ed.desc}</p>
                 </div>
               ))}
             </div>
@@ -882,7 +895,7 @@ export default function Home() {
               <div>
                 <SectionLabel number="4.2" label="Delivery Premium" />
                 <h3 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Cormorant Garamond', serif",
                   fontSize: "1.75rem",
                   fontWeight: 700,
                   color: C.ink,
@@ -890,7 +903,7 @@ export default function Home() {
                 }}>
                   A Casa Que Chega Até Você
                 </h3>
-                <p style={{ fontSize: "0.93rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "2rem" }}>
+                <p style={{ fontSize: "1.02rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "2rem" }}>
                   O delivery não pode ser tratado como transporte de pizza. Ele precisa ser tratado como extensão da casa.
                 </p>
                 <div style={{ display: "grid", gap: "0.75rem" }}>
@@ -909,7 +922,7 @@ export default function Home() {
                         display: "block",
                         marginBottom: "0.4rem",
                       }}>{item.elemento}</span>
-                      <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.75 }}>{item.desc}</p>
+                      <p style={{ fontSize: "0.95rem", color: C.inkMid, lineHeight: 1.8 }}>{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -928,7 +941,7 @@ export default function Home() {
           <div className="reveal">
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <SectionLabel number="4.3" label="Google Meu Negócio — Dominância Local" />
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.75rem", color: C.ink, marginBottom: "1rem" }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.75rem", color: C.ink, marginBottom: "1rem" }}>
                 A Forneria como resposta mais confiável
               </h3>
               <p style={{ fontSize: "0.93rem", color: C.inkMid, maxWidth: "580px", margin: "0 auto" }}>
@@ -947,7 +960,7 @@ export default function Home() {
                   border: `1px solid ${C.separator}`,
                 }}>
                   <span style={{
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: "'Cormorant Garamond', serif",
                     fontSize: "1.4rem",
                     fontWeight: 900,
                     color: `rgba(168,132,74,0.25)`,
@@ -955,13 +968,13 @@ export default function Home() {
                   }}>{String(i + 1).padStart(2, "0")}</span>
                   <div>
                     <h4 style={{
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: "'Cormorant Garamond', serif",
                       fontSize: "0.97rem",
                       fontWeight: 600,
                       color: C.ink,
                       marginBottom: "0.5rem",
                     }}>{acao.acao}</h4>
-                    <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.85 }}>{acao.como}</p>
+                    <p style={{ fontSize: "0.95rem", color: C.inkMid, lineHeight: 1.85 }}>{acao.como}</p>
                   </div>
                 </div>
               ))}
@@ -986,7 +999,7 @@ export default function Home() {
         <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "0 2rem", maxWidth: "800px" }}>
           <GoldOrnament />
           <h2 style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'Cormorant Garamond', serif",
             fontSize: "clamp(1.7rem, 4vw, 3rem)",
             fontWeight: 700,
             color: "#F8F4EE",
@@ -999,7 +1012,7 @@ export default function Home() {
           </h2>
           <GoldOrnament />
           <p style={{
-            fontFamily: "'Lato', sans-serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: "0.7rem",
             letterSpacing: "0.3em",
             textTransform: "uppercase",
