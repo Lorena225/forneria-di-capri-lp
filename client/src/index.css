@@ -1,18 +1,20 @@
 /*
- * FORNERIA DI CAPRI — Design System
- * Philosophy: "Vitrine Sensorial: Escuridão e Luz de Forno"
- * Cinematic dark luxury editorial with warm Italian amber accents
+ * FORNERIA DI CAPRI — Design System (Light Edition)
+ * Philosophy: "Papel de Carta Italiano — Luz, Linho e Ouro"
+ * Warm editorial light with aged gold accents and deep ink typography
  *
  * Color Palette:
- *   --navy-deep:    #080F1E  (base background — almost black blue)
- *   --navy-mid:     #0D1B3E  (section backgrounds — brand navy)
- *   --navy-light:   #1A2B5E  (card backgrounds — lighter navy)
- *   --gold:         #C9A96E  (primary accent — champagne gold)
- *   --gold-bright:  #E8C97A  (hover gold)
- *   --amber:        #D4884A  (warmth accent — oven/fire)
- *   --cream:        #F5F0E8  (primary text — warm off-white)
- *   --cream-muted:  #A89880  (secondary text — muted warm)
- *   --separator:    #2A3F6F  (subtle dividers)
+ *   --ivory:        #F8F4EE  (base background — warm ivory parchment)
+ *   --ivory-mid:    #F2EBE0  (section alt background — slightly warmer)
+ *   --ivory-deep:   #EAE0D0  (card/block backgrounds)
+ *   --gold:         #A8844A  (primary accent — aged gold)
+ *   --gold-bright:  #C9A96E  (hover/highlight gold)
+ *   --amber:        #B5622A  (warmth accent — terracotta/oven)
+ *   --ink:          #1C1410  (primary text — deep warm black)
+ *   --ink-mid:      #4A3C30  (secondary text — warm brown)
+ *   --ink-light:    #7A6A58  (muted text — warm taupe)
+ *   --separator:    #D8CCBC  (subtle dividers — warm beige)
+ *   --navy-accent:  #1A2B5E  (deep navy for contrast blocks)
  *
  * Typography:
  *   Display: Playfair Display (serif, Italian elegance)
@@ -51,37 +53,39 @@
 }
 
 :root {
-  --radius: 0.25rem;
-  --background: oklch(0.07 0.025 265);
-  --foreground: oklch(0.95 0.01 75);
-  --card: oklch(0.10 0.03 265);
-  --card-foreground: oklch(0.95 0.01 75);
-  --popover: oklch(0.10 0.03 265);
-  --popover-foreground: oklch(0.95 0.01 75);
-  --primary: oklch(0.72 0.08 75);
-  --primary-foreground: oklch(0.07 0.025 265);
-  --secondary: oklch(0.13 0.04 265);
-  --secondary-foreground: oklch(0.85 0.01 75);
-  --muted: oklch(0.15 0.03 265);
-  --muted-foreground: oklch(0.60 0.04 75);
-  --accent: oklch(0.72 0.08 75);
-  --accent-foreground: oklch(0.07 0.025 265);
+  --radius: 0.2rem;
+  --background: oklch(0.97 0.012 75);
+  --foreground: oklch(0.15 0.02 50);
+  --card: oklch(0.94 0.015 75);
+  --card-foreground: oklch(0.15 0.02 50);
+  --popover: oklch(0.97 0.012 75);
+  --popover-foreground: oklch(0.15 0.02 50);
+  --primary: oklch(0.55 0.07 70);
+  --primary-foreground: oklch(0.97 0.012 75);
+  --secondary: oklch(0.91 0.018 75);
+  --secondary-foreground: oklch(0.25 0.025 55);
+  --muted: oklch(0.91 0.018 75);
+  --muted-foreground: oklch(0.50 0.04 65);
+  --accent: oklch(0.55 0.07 70);
+  --accent-foreground: oklch(0.97 0.012 75);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.25 0.04 265);
-  --input: oklch(0.25 0.04 265);
-  --ring: oklch(0.72 0.08 75);
+  --border: oklch(0.85 0.02 75);
+  --input: oklch(0.85 0.02 75);
+  --ring: oklch(0.55 0.07 70);
 
   /* Forneria brand tokens */
-  --navy-deep: #080F1E;
-  --navy-mid: #0D1B3E;
-  --navy-light: #1A2B5E;
-  --gold: #C9A96E;
-  --gold-bright: #E8C97A;
-  --amber: #D4884A;
-  --cream: #F5F0E8;
-  --cream-muted: #A89880;
-  --separator: #2A3F6F;
+  --ivory:        #F8F4EE;
+  --ivory-mid:    #F2EBE0;
+  --ivory-deep:   #EAE0D0;
+  --gold:         #A8844A;
+  --gold-bright:  #C9A96E;
+  --amber:        #B5622A;
+  --ink:          #1C1410;
+  --ink-mid:      #4A3C30;
+  --ink-light:    #7A6A58;
+  --separator:    #D8CCBC;
+  --navy-accent:  #1A2B5E;
 }
 
 @layer base {
@@ -91,8 +95,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Lato', sans-serif;
-    background-color: #080F1E;
-    color: #F5F0E8;
+    background-color: #F8F4EE;
+    color: #1C1410;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
@@ -132,65 +136,30 @@
   .gold-line {
     width: 60px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #C9A96E, transparent);
+    background: linear-gradient(90deg, transparent, #A8844A, transparent);
   }
 
   .gold-line-full {
     width: 100%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #C9A96E 30%, #C9A96E 70%, transparent);
-    opacity: 0.4;
+    background: linear-gradient(90deg, transparent, #A8844A 30%, #A8844A 70%, transparent);
+    opacity: 0.35;
   }
 
   /* Section label */
   .section-label {
     font-family: 'Lato', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: #C9A96E;
-  }
-
-  /* Fade-in animation */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  @keyframes growWidth {
-    from { width: 0; }
-    to { width: 60px; }
-  }
-
-  @keyframes growWidthFull {
-    from { transform: scaleX(0); }
-    to { transform: scaleX(1); }
-  }
-
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s ease forwards;
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 1s ease forwards;
+    color: #A8844A;
   }
 
   /* Scroll reveal */
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(28px);
     transition: opacity 0.8s ease, transform 0.8s ease;
   }
 
@@ -202,42 +171,43 @@
   /* Word card hover */
   .word-card {
     transition: all 0.4s ease;
-    border: 1px solid rgba(201, 169, 110, 0.15);
-    background: rgba(26, 43, 94, 0.3);
+    border: 1px solid rgba(168, 132, 74, 0.2);
+    background: rgba(242, 235, 224, 0.6);
   }
 
   .word-card:hover {
-    border-color: rgba(201, 169, 110, 0.5);
-    background: rgba(26, 43, 94, 0.6);
+    border-color: rgba(168, 132, 74, 0.55);
+    background: rgba(234, 224, 208, 0.9);
     transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(168, 132, 74, 0.12);
   }
 
   /* Persona card */
   .persona-card {
-    border-left: 2px solid #C9A96E;
-    background: rgba(13, 27, 62, 0.6);
+    border-left: 2px solid #A8844A;
+    background: rgba(242, 235, 224, 0.5);
     transition: all 0.3s ease;
   }
 
   .persona-card:hover {
-    background: rgba(26, 43, 94, 0.8);
+    background: rgba(234, 224, 208, 0.8);
   }
 
   /* Scrollbar styling */
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #080F1E;
+    background: #F8F4EE;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #2A3F6F;
+    background: #D8CCBC;
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #C9A96E;
+    background: #A8844A;
   }
 }

@@ -1,19 +1,35 @@
 /*
- * FORNERIA DI CAPRI — Landing Page de Posicionamento de Marca
- * Design: "Vitrine Sensorial: Escuridão e Luz de Forno"
- * Paleta: Azul marinho profundo (#080F1E) + Dourado (#C9A96E) + Creme quente (#F5F0E8)
+ * FORNERIA DI CAPRI — Landing Page (Light Edition)
+ * Design: "Papel de Carta Italiano — Luz, Linho e Ouro"
+ * Paleta: Marfim (#F8F4EE) + Dourado envelhecido (#A8844A) + Tinta quente (#1C1410)
  * Tipografia: Playfair Display (display) + Lato (corpo)
  */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Image URLs from generated assets
 const IMAGES = {
-  heroPizza: "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/hero_pizza_forno-euWoShyhvzJ8bDVetYPRn7.webp",
-  heroMesa: "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/hero_mesa_vinho-JCsynTRpdAu5QT5Csy8fYe.webp",
-  massa: "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/massa_processo-RMAFE6m2xEAzACZ8V3bMtY.webp",
-  ambiente: "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/ambiente_restaurante-TZkLjNd65yoUxRgAi5krx5.webp",
-  vinho: "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/vinho_harmonizacao-EpXGxLuDfJvy3Ds7jDinEg.webp",
+  heroPizza:  "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/hero_pizza_forno-euWoShyhvzJ8bDVetYPRn7.webp",
+  heroMesa:   "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/hero_mesa_vinho-JCsynTRpdAu5QT5Csy8fYe.webp",
+  massa:      "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/massa_processo-RMAFE6m2xEAzACZ8V3bMtY.webp",
+  ambiente:   "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/ambiente_restaurante-TZkLjNd65yoUxRgAi5krx5.webp",
+  vinho:      "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/vinho_harmonizacao-EpXGxLuDfJvy3Ds7jDinEg.webp",
+};
+
+// Design tokens
+const C = {
+  ivory:      "#F8F4EE",
+  ivoryMid:   "#F2EBE0",
+  ivoryDeep:  "#EAE0D0",
+  gold:       "#A8844A",
+  goldBright: "#C9A96E",
+  amber:      "#B5622A",
+  ink:        "#1C1410",
+  inkMid:     "#4A3C30",
+  inkLight:   "#7A6A58",
+  separator:  "#D8CCBC",
+  navy:       "#1A2B5E",
+  navyLight:  "#243870",
 };
 
 // Scroll reveal hook
@@ -22,38 +38,34 @@ function useScrollReveal() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
+          if (entry.isIntersecting) entry.target.classList.add("visible");
         });
       },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
-
     const elements = document.querySelectorAll(".reveal");
     elements.forEach((el) => observer.observe(el));
-
     return () => observer.disconnect();
   }, []);
 }
 
-// Gold ornament divider
+// Gold ornament
 function GoldOrnament() {
   return (
-    <div className="flex items-center justify-center gap-3 my-2">
-      <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#C9A96E] opacity-60" />
-      <span style={{ color: "#C9A96E", fontSize: "0.6rem", letterSpacing: "0.3em" }}>· · ·</span>
-      <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#C9A96E] opacity-60" />
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.75rem", margin: "0.5rem 0" }}>
+      <div style={{ height: "1px", width: "48px", background: `linear-gradient(90deg, transparent, ${C.gold})`, opacity: 0.5 }} />
+      <span style={{ color: C.gold, fontSize: "0.55rem", letterSpacing: "0.4em" }}>· · ·</span>
+      <div style={{ height: "1px", width: "48px", background: `linear-gradient(270deg, transparent, ${C.gold})`, opacity: 0.5 }} />
     </div>
   );
 }
 
-// Section label component
+// Section label
 function SectionLabel({ number, label }: { number: string; label: string }) {
   return (
-    <div className="flex items-center gap-3 mb-6">
-      <span style={{ color: "#C9A96E", fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", fontStyle: "italic" }}>{number}</span>
-      <div className="h-px w-8 bg-[#C9A96E] opacity-50" />
+    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
+      <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.82rem", fontStyle: "italic", color: C.gold }}>{number}</span>
+      <div style={{ height: "1px", width: "28px", background: C.gold, opacity: 0.45 }} />
       <span className="section-label">{label}</span>
     </div>
   );
@@ -99,7 +111,6 @@ const PALAVRAS = [
   },
 ];
 
-// Personas
 const PERSONAS = [
   {
     num: "01",
@@ -148,7 +159,6 @@ const PERSONAS = [
   },
 ];
 
-// Digital channels
 const CANAIS = [
   { canal: "Instagram", funcao: "Faz desejar", descricao: "Cria o impulso antes da visita" },
   { canal: "Google Meu Negócio", funcao: "Faz confiar", descricao: "Valida a escolha no momento da busca" },
@@ -156,96 +166,35 @@ const CANAIS = [
   { canal: "Avaliação e Marcação", funcao: "Faz indicar", descricao: "Gera aquisição orgânica por prova social" },
 ];
 
-// Editorial fronts
 const EDITORIAIS = [
-  {
-    title: "Massa e Fogo",
-    desc: "Vídeos curtos de massa abrindo, borda inflando, queijo puxando, forno a lenha, corte, vapor, azeite finalizando. Conteúdo que dá fome e diferencia sem precisar falar muito.",
-  },
-  {
-    title: "Sabores com Assinatura",
-    desc: "Série 'De onde vem esse sabor?' — Nicholas como criador, não como vendedor. Tira a marca do lugar de catálogo e leva para o lugar de autoria.",
-  },
-  {
-    title: "A Casa em Movimento",
-    desc: "Vídeos de taças servidas, aniversários acontecendo, amigos brindando, equipe finalizando pratos, pizza chegando na mesa. A Forneria precisa parecer viva.",
-  },
-  {
-    title: "Autoridade da Casa",
-    desc: "Dani Branca como selo permanente. Bio, destaques, legendas e Reels precisam lembrar que a massa nasce de uma consultoria de nome reconhecido mundialmente.",
-  },
-  {
-    title: "Vinho e Ocasião",
-    desc: "Taça enchendo, harmonização, garrafa abrindo, mesa de amigos, noite de quarta, clima de permanência. Vinho não pode ser acessório — tem que virar linguagem visual da casa.",
-  },
+  { title: "Massa e Fogo", desc: "Vídeos curtos de massa abrindo, borda inflando, queijo puxando, forno a lenha, corte, vapor, azeite finalizando. Conteúdo que dá fome e diferencia sem precisar falar muito." },
+  { title: "Sabores com Assinatura", desc: "Série 'De onde vem esse sabor?' — Nicholas como criador, não como vendedor. Tira a marca do lugar de catálogo e leva para o lugar de autoria." },
+  { title: "A Casa em Movimento", desc: "Vídeos de taças servidas, aniversários acontecendo, amigos brindando, equipe finalizando pratos, pizza chegando na mesa. A Forneria precisa parecer viva." },
+  { title: "Autoridade da Casa", desc: "Dani Branca como selo permanente. Bio, destaques, legendas e Reels precisam lembrar que a massa nasce de uma consultoria de nome reconhecido mundialmente." },
+  { title: "Vinho e Ocasião", desc: "Taça enchendo, harmonização, garrafa abrindo, mesa de amigos, noite de quarta, clima de permanência. Vinho não pode ser acessório — tem que virar linguagem visual da casa." },
 ];
 
-// Delivery elements
 const DELIVERY_ITENS = [
-  {
-    elemento: "Identidade da Embalagem",
-    desc: "Caixa limpa, elegante, com assinatura verbal: 'Da nossa mesa para a sua noite.' Engenharia com respiros estratégicos para a massa não suar e chegar com a crocância preservada.",
-  },
-  {
-    elemento: "Cartão de Experiência",
-    desc: "Pequeno, bonito, colecionável. Frente: frase da marca. Verso: instrução de ritual. 'Abra ainda quente. Sirva sem pressa. Escolha uma taça. A noite começa agora.'",
-  },
-  {
-    elemento: "Bilhete de Finalização",
-    desc: "'Para finalizar como na casa: um fio de azeite, corte em 6 e sirva imediatamente.' Transforma consumo em ritual.",
-  },
-  {
-    elemento: "Sachê de Azeite Exclusivo",
-    desc: "Mini frasco de azeite da casa. Não precisa ir em todos os pedidos: apenas nos pedidos premium ou combos especiais. É memória física de marca.",
-  },
-  {
-    elemento: "Convite de Retorno",
-    desc: "Não desconto agressivo. 'Na próxima vez, venha viver Capri na mesa.' QR code para reserva.",
-  },
+  { elemento: "Identidade da Embalagem", desc: "Caixa limpa, elegante, com assinatura verbal: 'Da nossa mesa para a sua noite.' Engenharia com respiros estratégicos para a massa não suar e chegar com a crocância preservada." },
+  { elemento: "Cartão de Experiência", desc: "Pequeno, bonito, colecionável. Frente: frase da marca. Verso: instrução de ritual. 'Abra ainda quente. Sirva sem pressa. Escolha uma taça. A noite começa agora.'" },
+  { elemento: "Bilhete de Finalização", desc: "'Para finalizar como na casa: um fio de azeite, corte em 6 e sirva imediatamente.' Transforma consumo em ritual." },
+  { elemento: "Sachê de Azeite Exclusivo", desc: "Mini frasco de azeite da casa. Não precisa ir em todos os pedidos: apenas nos pedidos premium ou combos especiais. É memória física de marca." },
+  { elemento: "Convite de Retorno", desc: "Não desconto agressivo. 'Na próxima vez, venha viver Capri na mesa.' QR code para reserva." },
 ];
 
-// Google actions
 const GOOGLE_ACOES = [
-  {
-    acao: "Perfis impecáveis por unidade",
-    como: "Park Sul e Asa Sul com perfis separados: fotos atualizadas semanalmente, link para reserva, cardápio visível, carta de vinhos, diferenciais bem escritos na descrição.",
-  },
-  {
-    acao: "Coleta ativa de avaliações ricas",
-    como: "O garçom ou cartão da conta deve induzir avaliações com contexto: 'Se puder, conte no Google o que achou da massa, do ambiente ou do vinho. Isso ajuda muito a casa.'",
-  },
-  {
-    acao: "Resposta inteligente a todas as avaliações",
-    como: "Responder elogios com calor e palavras-chave naturais. Nunca copiar resposta. Citar a unidade quando fizer sentido. 'Ficamos felizes que aproveitou a noite aqui na Asa Sul.'",
-  },
-  {
-    acao: "Publicações semanais no perfil",
-    como: "Sabor da semana, quarta do vinho, early bird, novo Reel do forno. Não precisa ser longo — precisa ser constante. Poucos restaurantes fazem isso bem.",
-  },
-  {
-    acao: "Páginas locais no site",
-    como: "Páginas separadas para cada unidade com endereço, mapa, horários, fotos reais, destaques e CTA para reserva. Conecta busca, clique e conversão.",
-  },
+  { acao: "Perfis impecáveis por unidade", como: "Park Sul e Asa Sul com perfis separados: fotos atualizadas semanalmente, link para reserva, cardápio visível, carta de vinhos, diferenciais bem escritos na descrição." },
+  { acao: "Coleta ativa de avaliações ricas", como: "O garçom ou cartão da conta deve induzir avaliações com contexto: 'Se puder, conte no Google o que achou da massa, do ambiente ou do vinho. Isso ajuda muito a casa.'" },
+  { acao: "Resposta inteligente a todas as avaliações", como: "Responder elogios com calor e palavras-chave naturais. Nunca copiar resposta. Citar a unidade quando fizer sentido. 'Ficamos felizes que aproveitou a noite aqui na Asa Sul.'" },
+  { acao: "Publicações semanais no perfil", como: "Sabor da semana, quarta do vinho, early bird, novo Reel do forno. Não precisa ser longo — precisa ser constante. Poucos restaurantes fazem isso bem." },
+  { acao: "Páginas locais no site", como: "Páginas separadas para cada unidade com endereço, mapa, horários, fotos reais, destaques e CTA para reserva. Conecta busca, clique e conversão." },
 ];
 
-// Tom de voz translations
 const TOM_EXEMPLOS = [
-  {
-    errado: "Venha experimentar nossa pizza premium.",
-    certo: "Sua mesa está pronta para uma noite que começa no forno e termina entre bons encontros.",
-  },
-  {
-    errado: "Temos sabores exclusivos.",
-    certo: "Aqui, cada sabor entra na sua mesa com personalidade própria.",
-  },
-  {
-    errado: "Faça sua reserva agora.",
-    certo: "Reserve sua mesa e venha viver a noite no seu ritmo perfeito.",
-  },
-  {
-    errado: "Promoção especial de hoje.",
-    certo: "Uma quarta com a casa acesa, o vinho servido e a mesa reservada para você.",
-  },
+  { errado: "Venha experimentar nossa pizza premium.", certo: "Sua mesa está pronta para uma noite que começa no forno e termina entre bons encontros." },
+  { errado: "Temos sabores exclusivos.", certo: "Aqui, cada sabor entra na sua mesa com personalidade própria." },
+  { errado: "Faça sua reserva agora.", certo: "Reserve sua mesa e venha viver a noite no seu ritmo perfeito." },
+  { errado: "Promoção especial de hoje.", certo: "Uma quarta com a casa acesa, o vinho servido e a mesa reservada para você." },
 ];
 
 export default function Home() {
@@ -253,71 +202,74 @@ export default function Home() {
   useScrollReveal();
 
   return (
-    <div style={{ backgroundColor: "#080F1E", color: "#F5F0E8", fontFamily: "'Lato', sans-serif", overflowX: "hidden" }}>
+    <div style={{ backgroundColor: C.ivory, color: C.ink, fontFamily: "'Lato', sans-serif", overflowX: "hidden" }}>
 
       {/* ─── NAVIGATION ─────────────────────────────────────────────── */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: "1.2rem 2rem",
-        background: "linear-gradient(180deg, rgba(8,15,30,0.95) 0%, transparent 100%)",
-        backdropFilter: "blur(8px)",
+        padding: "1.1rem 2rem",
+        background: "rgba(248, 244, 238, 0.92)",
+        backdropFilter: "blur(12px)",
+        borderBottom: `1px solid ${C.separator}`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <span style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "1.1rem",
+            fontSize: "1rem",
             fontWeight: 700,
-            letterSpacing: "0.15em",
-            color: "#F5F0E8",
+            letterSpacing: "0.18em",
+            color: C.ink,
             textTransform: "uppercase",
           }}>FORNERIA</span>
           <span style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "0.75rem",
+            fontSize: "0.7rem",
             fontStyle: "italic",
-            color: "#C9A96E",
+            color: C.gold,
             letterSpacing: "0.1em",
             marginTop: "-2px",
           }}>di Capri</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <span style={{ color: "#C9A96E", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", fontFamily: "'Lato', sans-serif" }}>
+          <span style={{ color: C.gold, fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", fontFamily: "'Lato', sans-serif" }}>
             Posicionamento de Marca
           </span>
-          <span style={{ color: "#C9A96E", fontSize: "0.65rem" }}>·</span>
-          <span style={{ color: "#A89880", fontSize: "0.65rem", letterSpacing: "0.1em" }}>2025</span>
+          <span style={{ color: C.separator, fontSize: "0.65rem" }}>·</span>
+          <span style={{ color: C.inkLight, fontSize: "0.62rem", letterSpacing: "0.1em" }}>2025</span>
         </div>
       </nav>
 
       {/* ─── HERO SECTION ───────────────────────────────────────────── */}
       <section style={{ position: "relative", height: "100vh", minHeight: "600px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-        {/* Background image */}
+        {/* Background image — dark enough for white text */}
         <div style={{
           position: "absolute", inset: 0,
           backgroundImage: `url(${IMAGES.heroPizza})`,
           backgroundSize: "cover",
           backgroundPosition: "center 30%",
-          filter: "brightness(0.35)",
+          filter: "brightness(0.28) saturate(0.8)",
         }} />
-        {/* Gradient overlay */}
+        {/* Warm ivory vignette overlay */}
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(180deg, rgba(8,15,30,0.3) 0%, rgba(8,15,30,0.1) 40%, rgba(8,15,30,0.7) 80%, rgba(8,15,30,1) 100%)",
+          background: "linear-gradient(180deg, rgba(28,20,16,0.25) 0%, rgba(28,20,16,0.05) 40%, rgba(28,20,16,0.55) 80%, rgba(28,20,16,0.92) 100%)",
         }} />
         {/* Content */}
         <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "0 1.5rem", maxWidth: "900px" }}>
           <div style={{ marginBottom: "1.5rem" }}>
-            <span className="section-label" style={{ letterSpacing: "0.4em" }}>Documento Interno · Uso Exclusivo da Equipe de Marca</span>
+            <span style={{ color: "rgba(201,169,110,0.9)", fontSize: "0.62rem", letterSpacing: "0.4em", textTransform: "uppercase", fontFamily: "'Lato', sans-serif", fontWeight: 700 }}>
+              Documento Interno · Uso Exclusivo da Equipe de Marca
+            </span>
           </div>
           <h1 style={{
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(2.5rem, 7vw, 5.5rem)",
             fontWeight: 900,
             lineHeight: 1.05,
-            color: "#F5F0E8",
+            color: "#F8F4EE",
             marginBottom: "0.5rem",
-            textShadow: "0 4px 30px rgba(0,0,0,0.5)",
+            textShadow: "0 4px 40px rgba(0,0,0,0.4)",
           }}>
             Manual de<br />
             <span style={{ color: "#C9A96E" }}>Posicionamento</span><br />
@@ -326,7 +278,7 @@ export default function Home() {
           <GoldOrnament />
           <p style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
+            fontSize: "clamp(1rem, 2.5vw, 1.35rem)",
             fontStyle: "italic",
             color: "#C9A96E",
             marginTop: "1.5rem",
@@ -336,10 +288,10 @@ export default function Home() {
           </p>
           <p style={{
             fontFamily: "'Lato', sans-serif",
-            fontSize: "0.85rem",
-            color: "#A89880",
+            fontSize: "0.78rem",
+            color: "rgba(248,244,238,0.55)",
             marginTop: "0.75rem",
-            letterSpacing: "0.15em",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
           }}>
             Park Sul · Asa Sul · Versão 2025
@@ -347,40 +299,35 @@ export default function Home() {
         </div>
         {/* Scroll indicator */}
         <div style={{
-          position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)",
+          position: "absolute", bottom: "2.5rem", left: "50%", transform: "translateX(-50%)",
           display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem",
-          animation: "fadeIn 2s ease 1s both",
         }}>
-          <span style={{ color: "#A89880", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase" }}>Rolar</span>
-          <div style={{
-            width: "1px", height: "40px",
-            background: "linear-gradient(180deg, #C9A96E, transparent)",
-            animation: "fadeIn 1s ease infinite alternate",
-          }} />
+          <span style={{ color: "rgba(201,169,110,0.7)", fontSize: "0.6rem", letterSpacing: "0.3em", textTransform: "uppercase" }}>Rolar</span>
+          <div style={{ width: "1px", height: "36px", background: "linear-gradient(180deg, #C9A96E, transparent)" }} />
         </div>
       </section>
 
       {/* ─── APRESENTAÇÃO ───────────────────────────────────────────── */}
-      <section style={{ padding: "6rem 0", backgroundColor: "#080F1E" }}>
+      <section style={{ padding: "7rem 0 6rem", backgroundColor: C.ivory }}>
         <div className="container">
-          <div className="reveal" style={{ maxWidth: "780px", margin: "0 auto", textAlign: "center" }}>
+          <div className="reveal" style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center" }}>
             <SectionLabel number="I." label="Apresentação" />
             <p style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(1.3rem, 2.5vw, 1.8rem)",
-              lineHeight: 1.6,
-              color: "#F5F0E8",
+              fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)",
+              lineHeight: 1.65,
+              color: C.ink,
               marginBottom: "2rem",
             }}>
               Este manual reúne em um único documento a totalidade da estratégia de posicionamento da Forneria di Capri.
             </p>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
               Ele não é um guia de estilo estático, nem um conjunto de normas genéricas de comunicação. É o mapa que orienta cada decisão de marca, da escolha das palavras de uma legenda à forma como um garçom finaliza a conta de uma mesa.
             </p>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
               A Forneria di Capri tem o que poucos restaurantes em Brasília conseguem acumular em menos de três anos: produto técnico de padrão internacional, dois endereços consolidados, nota 4.8 no Google e a consultoria de um pizzaiolo que figura entre os três melhores do mundo. O que falta, e é o que este manual endereça, é traduzir toda essa substância em uma comunicação que faça jus ao que a casa entrega.
             </p>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid }}>
               Cada capítulo foi construído com base no diagnóstico completo da operação, no comportamento real dos clientes atuais e nos territórios de crescimento que a marca precisa ocupar com clareza nos próximos ciclos. Nenhum dado aqui foi inventado. Nenhuma recomendação é genérica.
             </p>
           </div>
@@ -391,59 +338,54 @@ export default function Home() {
       <div className="container"><div className="gold-line-full reveal" /></div>
 
       {/* ─── 01. A ALMA DA MARCA ────────────────────────────────────── */}
-      <section style={{ padding: "6rem 0", backgroundColor: "#080F1E" }}>
+      <section style={{ padding: "6rem 0", backgroundColor: C.ivory }}>
         <div className="container">
-          {/* Posicionamento central */}
+          {/* Quem é a Forneria */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center", marginBottom: "6rem" }} className="reveal grid-cols-responsive">
             <div>
               <SectionLabel number="01." label="A Alma da Marca" />
               <h2 style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(2rem, 4vw, 3rem)",
+                fontSize: "clamp(1.9rem, 4vw, 3rem)",
                 fontWeight: 700,
-                color: "#F5F0E8",
+                color: C.ink,
                 lineHeight: 1.2,
                 marginBottom: "2rem",
               }}>
-                Quem é a<br /><span style={{ color: "#C9A96E" }}>Forneria di Capri</span>
+                Quem é a<br /><span style={{ color: C.gold }}>Forneria di Capri</span>
               </h2>
-              <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
                 A Forneria di Capri não nasceu para disputar espaço como mais uma pizzaria de Brasília. Ela nasceu para ser o lugar que as pessoas escolhem quando querem sair de casa para viver uma noite bonita, comer muito bem e estar num ambiente que faz sentido do começo ao fim.
               </p>
-              <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
                 Sua força não está apenas nas pizzas mais saborosas, mas na soma entre uma massa perfeitamente preparada, sabores que fogem do comum, atmosfera de casa desejada e uma experiência que conversa com casais, famílias e encontros que pedem vinho, conversa e permanência à mesa.
               </p>
-              <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880" }}>
-                Enquanto os concorrentes mais consolidados ocupam o território da história e do tempo de mercado, a Forneria tem espaço para ocupar um lugar mais atual: o da <strong style={{ color: "#F5F0E8" }}>Nova casa italiana de Brasília</strong>, com técnica, personalidade e ambiente.
+              <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid }}>
+                Enquanto os concorrentes mais consolidados ocupam o território da história e do tempo de mercado, a Forneria tem espaço para ocupar um lugar mais atual: o da <strong style={{ color: C.ink }}>Nova casa italiana de Brasília</strong>, com técnica, personalidade e ambiente.
               </p>
             </div>
             <div style={{ position: "relative" }}>
               <img
                 src={IMAGES.ambiente}
                 alt="Ambiente Forneria di Capri"
-                style={{
-                  width: "100%",
-                  height: "480px",
-                  objectFit: "cover",
-                  borderRadius: "2px",
-                  filter: "brightness(0.85)",
-                }}
+                style={{ width: "100%", height: "480px", objectFit: "cover", borderRadius: "1px", filter: "brightness(0.88) saturate(0.9)" }}
               />
               <div style={{
                 position: "absolute",
                 bottom: "-1.5rem",
                 left: "-1.5rem",
-                padding: "1.5rem 2rem",
-                background: "rgba(8,15,30,0.95)",
-                border: "1px solid rgba(201,169,110,0.3)",
-                maxWidth: "280px",
+                padding: "1.5rem 1.75rem",
+                background: C.ivory,
+                border: `1px solid ${C.separator}`,
+                boxShadow: "0 8px 32px rgba(28,20,16,0.1)",
+                maxWidth: "270px",
               }}>
                 <p style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "0.95rem",
+                  fontSize: "0.9rem",
                   fontStyle: "italic",
-                  color: "#C9A96E",
-                  lineHeight: 1.6,
+                  color: C.gold,
+                  lineHeight: 1.65,
                 }}>
                   "Uma marca que não grita sofisticação, ela faz o cliente sentir."
                 </p>
@@ -454,24 +396,21 @@ export default function Home() {
           {/* Posicionamento em uma linha */}
           <div className="reveal" style={{
             textAlign: "center",
-            padding: "4rem 2rem",
-            background: "linear-gradient(135deg, rgba(13,27,62,0.8), rgba(26,43,94,0.4))",
-            border: "1px solid rgba(201,169,110,0.2)",
+            padding: "4rem 2.5rem",
+            background: C.ivoryMid,
+            border: `1px solid ${C.separator}`,
             marginBottom: "5rem",
             position: "relative",
             overflow: "hidden",
           }}>
-            <div style={{
-              position: "absolute", top: 0, left: 0, right: 0, height: "2px",
-              background: "linear-gradient(90deg, transparent, #C9A96E, transparent)",
-            }} />
+            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, opacity: 0.5 }} />
             <span className="section-label" style={{ marginBottom: "1.5rem", display: "block" }}>Posicionamento em uma linha</span>
             <p style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(1.2rem, 2.5vw, 1.7rem)",
+              fontSize: "clamp(1.15rem, 2.5vw, 1.65rem)",
               fontStyle: "italic",
-              color: "#F5F0E8",
-              lineHeight: 1.6,
+              color: C.ink,
+              lineHeight: 1.65,
               maxWidth: "700px",
               margin: "0 auto 1.5rem",
             }}>
@@ -480,8 +419,8 @@ export default function Home() {
             <GoldOrnament />
             <p style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(1rem, 2vw, 1.3rem)",
-              color: "#C9A96E",
+              fontSize: "clamp(0.95rem, 2vw, 1.25rem)",
+              color: C.gold,
               fontStyle: "italic",
               marginTop: "1.5rem",
               maxWidth: "700px",
@@ -492,19 +431,19 @@ export default function Home() {
           </div>
 
           {/* O que a marca vende de verdade */}
-          <div className="reveal" style={{ maxWidth: "780px", margin: "0 auto", textAlign: "center", marginBottom: "5rem" }}>
+          <div className="reveal" style={{ maxWidth: "760px", margin: "0 auto", textAlign: "center", marginBottom: "5rem" }}>
             <SectionLabel number="—" label="O Que a Marca Vende de Verdade" />
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
               Um ticket médio de R$ 200 por comanda não está ligado apenas ao produto servido, mas à experiência que criamos nas pessoas. Entregamos mais do que pizzas — estamos proporcionando estados emocionais, rituais de pertencimento e momentos de transição no dia do cliente.
             </p>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.4rem" }}>
               Cada mesa que ocupamos é um espaço onde conexões acontecem, histórias são compartilhadas e a rotina ganha significado. Nosso papel é tornar esses momentos possíveis com consistência, intenção e identidade.
             </p>
             <p style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "1.2rem",
+              fontSize: "1.15rem",
               fontStyle: "italic",
-              color: "#C9A96E",
+              color: C.gold,
               marginTop: "2rem",
             }}>
               "Não vendemos apenas um produto. Criamos o contexto onde momentos memoráveis acontecem."
@@ -514,7 +453,7 @@ export default function Home() {
       </section>
 
       {/* ─── AS SEIS PALAVRAS ────────────────────────────────────────── */}
-      <section style={{ padding: "6rem 0", backgroundColor: "#0A1224" }}>
+      <section style={{ padding: "6rem 0", backgroundColor: C.ivoryMid }}>
         <div className="container">
           <div className="reveal" style={{ textAlign: "center", marginBottom: "4rem" }}>
             <SectionLabel number="—" label="As Seis Palavras que Representam a Marca" />
@@ -522,69 +461,59 @@ export default function Home() {
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 700,
-              color: "#F5F0E8",
+              color: C.ink,
               marginBottom: "1.5rem",
             }}>
               Um vocabulário próprio
             </h2>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", maxWidth: "680px", margin: "0 auto" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
               Marcas que tentam dizer tudo acabam não sendo reconhecidas por nada. Aqui, a escolha é deliberada: reduzir o vocabulário para ampliar a presença. Cada palavra funciona como um ponto de ancoragem que orienta como a marca se expressa, decide e se comporta.
             </p>
           </div>
 
-          {/* Words grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "1.5rem",
-          }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.25rem" }}>
             {PALAVRAS.map((p, i) => (
               <div
                 key={p.word}
                 className="word-card reveal"
-                style={{
-                  padding: "2rem",
-                  animationDelay: `${i * 0.1}s`,
-                  transitionDelay: `${i * 0.05}s`,
-                }}
+                style={{ padding: "2rem", transitionDelay: `${i * 0.05}s` }}
               >
                 <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "1rem" }}>
                   <span style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "2rem",
+                    fontSize: "1.9rem",
                     fontWeight: 900,
-                    color: "#C9A96E",
-                    letterSpacing: "0.1em",
+                    color: C.gold,
+                    letterSpacing: "0.12em",
                   }}>{p.word}</span>
-                  <div style={{ flex: 1, height: "1px", background: "rgba(201,169,110,0.2)" }} />
+                  <div style={{ flex: 1, height: "1px", background: C.separator }} />
                 </div>
-                <p style={{ fontSize: "0.9rem", lineHeight: 1.8, color: "#A89880", marginBottom: "1.5rem" }}>
+                <p style={{ fontSize: "0.88rem", lineHeight: 1.85, color: C.inkMid, marginBottom: "1.5rem" }}>
                   {p.description}
                 </p>
-                <div style={{ borderTop: "1px solid rgba(201,169,110,0.1)", paddingTop: "1rem" }}>
+                <div style={{ borderTop: `1px solid ${C.separator}`, paddingTop: "1rem" }}>
                   <div style={{ marginBottom: "0.75rem" }}>
-                    <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C9A96E", fontWeight: 700 }}>No digital</span>
-                    <p style={{ fontSize: "0.82rem", color: "#8A7A6A", lineHeight: 1.7, marginTop: "0.3rem" }}>{p.digital}</p>
+                    <span style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No digital</span>
+                    <p style={{ fontSize: "0.8rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.digital}</p>
                   </div>
                   <div>
-                    <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#C9A96E", fontWeight: 700 }}>No presencial</span>
-                    <p style={{ fontSize: "0.82rem", color: "#8A7A6A", lineHeight: 1.7, marginTop: "0.3rem" }}>{p.presencial}</p>
+                    <span style={{ fontSize: "0.62rem", letterSpacing: "0.22em", textTransform: "uppercase", color: C.gold, fontWeight: 700 }}>No presencial</span>
+                    <p style={{ fontSize: "0.8rem", color: C.inkLight, lineHeight: 1.75, marginTop: "0.3rem" }}>{p.presencial}</p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Closing statement */}
-          <div className="reveal" style={{ textAlign: "center", marginTop: "4rem", maxWidth: "680px", margin: "4rem auto 0" }}>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+          <div className="reveal" style={{ textAlign: "center", marginTop: "4rem", maxWidth: "660px", margin: "4rem auto 0" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
               Com o tempo, o cliente deixa de perceber essas palavras de forma consciente e passa a sentir o que elas representam. Elas constroem um território emocional, reforçam identidade e tornam a experiência consistente em todos os pontos de contato.
             </p>
             <p style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "1.1rem",
               fontStyle: "italic",
-              color: "#C9A96E",
+              color: C.gold,
             }}>
               "Uma marca que se fixa não pelo volume do que diz, mas pela clareza e repetição do que escolhe dizer."
             </p>
@@ -593,7 +522,7 @@ export default function Home() {
       </section>
 
       {/* ─── 02. TOM DE VOZ ─────────────────────────────────────────── */}
-      <section style={{ padding: "6rem 0", backgroundColor: "#080F1E" }}>
+      <section style={{ padding: "6rem 0", backgroundColor: C.ivory }}>
         <div className="container">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "start" }} className="reveal grid-cols-responsive">
             {/* Left: image */}
@@ -601,16 +530,17 @@ export default function Home() {
               <img
                 src={IMAGES.vinho}
                 alt="Vinho e harmonização"
-                style={{ width: "100%", height: "500px", objectFit: "cover", borderRadius: "2px", filter: "brightness(0.8)" }}
+                style={{ width: "100%", height: "500px", objectFit: "cover", borderRadius: "1px", filter: "brightness(0.82) saturate(0.85)" }}
               />
               <div style={{
                 position: "absolute", top: "2rem", right: "-1.5rem",
-                padding: "1.5rem",
-                background: "rgba(8,15,30,0.95)",
-                border: "1px solid rgba(201,169,110,0.3)",
-                maxWidth: "220px",
+                padding: "1.25rem 1.5rem",
+                background: C.ivory,
+                border: `1px solid ${C.separator}`,
+                boxShadow: "0 8px 32px rgba(28,20,16,0.1)",
+                maxWidth: "210px",
               }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.85rem", fontStyle: "italic", color: "#C9A96E", lineHeight: 1.6 }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.82rem", fontStyle: "italic", color: C.gold, lineHeight: 1.65 }}>
                   "A Forneria fala como quem sabe receber."
                 </p>
               </div>
@@ -622,7 +552,7 @@ export default function Home() {
                 fontFamily: "'Playfair Display', serif",
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)",
                 fontWeight: 700,
-                color: "#F5F0E8",
+                color: C.ink,
                 lineHeight: 1.2,
                 marginBottom: "1.5rem",
               }}>
@@ -630,38 +560,37 @@ export default function Home() {
               </h2>
               <div style={{
                 padding: "1.5rem",
-                background: "rgba(13,27,62,0.5)",
-                borderLeft: "3px solid #C9A96E",
+                background: C.ivoryMid,
+                borderLeft: `3px solid ${C.gold}`,
                 marginBottom: "2rem",
               }}>
                 <span className="section-label" style={{ marginBottom: "0.5rem", display: "block" }}>Arquétipo</span>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.1rem", color: "#F5F0E8", fontStyle: "italic" }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.05rem", color: C.ink, fontStyle: "italic" }}>
                   O Curador Acolhedor
                 </p>
-                <p style={{ fontSize: "0.9rem", color: "#A89880", lineHeight: 1.8, marginTop: "0.75rem" }}>
+                <p style={{ fontSize: "0.88rem", color: C.inkMid, lineHeight: 1.85, marginTop: "0.75rem" }}>
                   A marca fala como um excelente anfitrião que conhece o mundo, entende profundamente de vinhos e de gastronomia de alta qualidade, mas deixa os convidados completamente à vontade. É uma voz madura, serena, que transmite autoridade pelo domínio do assunto.
                 </p>
               </div>
-              <p style={{ fontSize: "0.95rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+              <p style={{ fontSize: "0.93rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "1.5rem" }}>
                 Sem afetação, sem exageros, sem o peso de uma linguagem publicitária muito forçada. A comunicação é direta, envolvente e naturalmente convidativa. É uma marca que se expressa com segurança, mas nunca com rigidez — com elegância, mas sem criar distância — e com apetite, mas sem excessos.
               </p>
-              {/* Fala com / não precisa parecer */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginTop: "2rem" }}>
-                <div style={{ padding: "1.25rem", background: "rgba(201,169,110,0.08)", border: "1px solid rgba(201,169,110,0.2)" }}>
+                <div style={{ padding: "1.25rem", background: C.ivoryMid, border: `1px solid ${C.separator}` }}>
                   <span className="section-label" style={{ marginBottom: "1rem", display: "block" }}>A marca fala com</span>
                   {["Calor", "Segurança", "Bom gosto", "Sensação de casa", "Apetite elegante"].map(item => (
                     <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                      <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#C9A96E", flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.85rem", color: "#F5F0E8" }}>{item}</span>
+                      <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: C.gold, flexShrink: 0 }} />
+                      <span style={{ fontSize: "0.83rem", color: C.inkMid }}>{item}</span>
                     </div>
                   ))}
                 </div>
-                <div style={{ padding: "1.25rem", background: "rgba(13,27,62,0.4)", border: "1px solid rgba(201,169,110,0.1)" }}>
-                  <span className="section-label" style={{ marginBottom: "1rem", display: "block", color: "#8A7A6A" }}>A marca não precisa parecer</span>
+                <div style={{ padding: "1.25rem", background: C.ivoryDeep, border: `1px solid ${C.separator}` }}>
+                  <span className="section-label" style={{ marginBottom: "1rem", display: "block", color: C.inkLight }}>Não precisa parecer</span>
                   {["Cara", "Urgente", "Promocional"].map(item => (
                     <div key={item} style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-                      <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: "#8A7A6A", flexShrink: 0 }} />
-                      <span style={{ fontSize: "0.85rem", color: "#8A7A6A" }}>{item}</span>
+                      <div style={{ width: "4px", height: "4px", borderRadius: "50%", background: C.separator, flexShrink: 0 }} />
+                      <span style={{ fontSize: "0.83rem", color: C.inkLight }}>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -673,11 +602,11 @@ export default function Home() {
           <div className="reveal" style={{ marginTop: "5rem" }}>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <span className="section-label">Tradução Prática do Tom</span>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", color: "#F5F0E8", marginTop: "0.5rem" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.75rem", color: C.ink, marginTop: "0.5rem" }}>
                 Em vez de dizer... A Forneria diz
               </h3>
             </div>
-            <div style={{ display: "grid", gap: "1rem" }}>
+            <div style={{ display: "grid", gap: "0.75rem" }}>
               {TOM_EXEMPLOS.map((ex, i) => (
                 <div key={i} style={{
                   display: "grid",
@@ -685,18 +614,18 @@ export default function Home() {
                   gap: "1.5rem",
                   alignItems: "center",
                   padding: "1.5rem 2rem",
-                  background: "rgba(13,27,62,0.4)",
-                  border: "1px solid rgba(201,169,110,0.1)",
+                  background: C.ivoryMid,
+                  border: `1px solid ${C.separator}`,
                 }}>
-                  <p style={{ fontSize: "0.9rem", color: "#6A5A4A", fontStyle: "italic", lineHeight: 1.6 }}>
+                  <p style={{ fontSize: "0.88rem", color: C.inkLight, fontStyle: "italic", lineHeight: 1.65 }}>
                     "{ex.errado}"
                   </p>
-                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.25rem" }}>
-                    <div style={{ width: "1px", height: "20px", background: "rgba(201,169,110,0.3)" }} />
-                    <span style={{ color: "#C9A96E", fontSize: "1rem" }}>→</span>
-                    <div style={{ width: "1px", height: "20px", background: "rgba(201,169,110,0.3)" }} />
+                  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.2rem" }}>
+                    <div style={{ width: "1px", height: "16px", background: C.separator }} />
+                    <span style={{ color: C.gold, fontSize: "1rem" }}>→</span>
+                    <div style={{ width: "1px", height: "16px", background: C.separator }} />
                   </div>
-                  <p style={{ fontSize: "0.9rem", color: "#F5F0E8", lineHeight: 1.6 }}>
+                  <p style={{ fontSize: "0.88rem", color: C.ink, lineHeight: 1.65 }}>
                     "{ex.certo}"
                   </p>
                 </div>
@@ -707,15 +636,15 @@ export default function Home() {
       </section>
 
       {/* ─── DIVIDER IMAGE ──────────────────────────────────────────── */}
-      <div style={{ position: "relative", height: "350px", overflow: "hidden" }}>
+      <div style={{ position: "relative", height: "340px", overflow: "hidden" }}>
         <img
           src={IMAGES.massa}
           alt="Processo da massa"
-          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%", filter: "brightness(0.5)" }}
+          style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 40%", filter: "brightness(0.38) saturate(0.7)" }}
         />
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(180deg, rgba(8,15,30,0.8) 0%, transparent 30%, transparent 70%, rgba(8,15,30,0.8) 100%)",
+          background: "linear-gradient(180deg, rgba(248,244,238,0.7) 0%, transparent 25%, transparent 75%, rgba(248,244,238,0.7) 100%)",
           display: "flex", alignItems: "center", justifyContent: "center",
         }}>
           <div style={{ textAlign: "center" }}>
@@ -723,13 +652,13 @@ export default function Home() {
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(1.3rem, 3vw, 2rem)",
               fontStyle: "italic",
-              color: "#F5F0E8",
-              textShadow: "0 2px 20px rgba(0,0,0,0.8)",
+              color: "#F8F4EE",
+              textShadow: "0 2px 20px rgba(0,0,0,0.7)",
             }}>
               "Aqui, tudo começa no forno."
             </p>
             <GoldOrnament />
-            <p style={{ fontSize: "0.75rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "#C9A96E", marginTop: "0.5rem" }}>
+            <p style={{ fontSize: "0.7rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(201,169,110,0.9)", marginTop: "0.5rem" }}>
               Massa com fermentação lenta · Consultoria Dani Branca · Top 3 do Mundo
             </p>
           </div>
@@ -737,7 +666,7 @@ export default function Home() {
       </div>
 
       {/* ─── 03. PÚBLICO-ALVO ────────────────────────────────────────── */}
-      <section style={{ padding: "6rem 0", backgroundColor: "#080F1E" }}>
+      <section style={{ padding: "6rem 0", backgroundColor: C.ivory }}>
         <div className="container">
           <div className="reveal" style={{ textAlign: "center", marginBottom: "4rem" }}>
             <SectionLabel number="03." label="Público-Alvo" />
@@ -745,45 +674,41 @@ export default function Home() {
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 700,
-              color: "#F5F0E8",
+              color: C.ink,
               marginBottom: "1.5rem",
             }}>
               Cinco Arquétipos Comportamentais
             </h2>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", maxWidth: "680px", margin: "0 auto" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
               Entender o cliente da Forneria di Capri exige ir além da demografia. Um ticket médio de R$ 200 por comanda não está ligado à necessidade de alimentação, mas ao desejo de viver algo específico. O cliente busca desacelerar o dia, criar momentos de conexão e transformar uma refeição em experiência.
             </p>
           </div>
 
-          <div style={{ display: "grid", gap: "1.5rem" }}>
+          <div style={{ display: "grid", gap: "1rem" }}>
             {PERSONAS.map((persona, i) => (
               <div
                 key={persona.num}
                 className="persona-card reveal"
-                style={{
-                  padding: "2rem 2.5rem",
-                  cursor: "pointer",
-                  transitionDelay: `${i * 0.05}s`,
-                }}
+                style={{ padding: "1.75rem 2.25rem", cursor: "pointer", transitionDelay: `${i * 0.05}s` }}
                 onClick={() => setActivePersona(activePersona === i ? null : i)}
               >
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
                     <span style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontSize: "1.5rem",
+                      fontSize: "1.4rem",
                       fontWeight: 900,
-                      color: "rgba(201,169,110,0.4)",
+                      color: "rgba(168,132,74,0.35)",
                     }}>{persona.num}</span>
                     <h3 style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontSize: "1.15rem",
+                      fontSize: "1.1rem",
                       fontWeight: 600,
-                      color: "#F5F0E8",
+                      color: C.ink,
                     }}>{persona.title}</h3>
                   </div>
                   <span style={{
-                    color: "#C9A96E",
+                    color: C.gold,
                     fontSize: "1.2rem",
                     transition: "transform 0.3s ease",
                     transform: activePersona === i ? "rotate(45deg)" : "rotate(0deg)",
@@ -792,22 +717,22 @@ export default function Home() {
                 </div>
 
                 {activePersona === i && (
-                  <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(201,169,110,0.15)" }}>
-                    <p style={{ fontSize: "0.9rem", lineHeight: 1.9, color: "#A89880", marginBottom: "1.5rem" }}>
+                  <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: `1px solid ${C.separator}` }}>
+                    <p style={{ fontSize: "0.88rem", lineHeight: 1.9, color: C.inkMid, marginBottom: "1.5rem" }}>
                       {persona.frequencia}
                     </p>
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1rem" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "0.75rem" }}>
                       {[
-                        { label: "O que busca", value: persona.busca, color: "#C9A96E" },
-                        { label: "O que teme", value: persona.teme, color: "#8A7A6A" },
-                        { label: "O que convence", value: persona.convence, color: "#C9A96E" },
-                        { label: "O que afasta", value: persona.afasta, color: "#8A7A6A" },
+                        { label: "O que busca", value: persona.busca, accent: C.gold },
+                        { label: "O que teme", value: persona.teme, accent: C.inkLight },
+                        { label: "O que convence", value: persona.convence, accent: C.gold },
+                        { label: "O que afasta", value: persona.afasta, accent: C.inkLight },
                       ].map(item => (
-                        <div key={item.label} style={{ padding: "1rem", background: "rgba(8,15,30,0.5)" }}>
-                          <span style={{ fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: item.color, fontWeight: 700, display: "block", marginBottom: "0.5rem" }}>
+                        <div key={item.label} style={{ padding: "1rem", background: C.ivory, border: `1px solid ${C.separator}` }}>
+                          <span style={{ fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: item.accent, fontWeight: 700, display: "block", marginBottom: "0.4rem" }}>
                             {item.label}
                           </span>
-                          <p style={{ fontSize: "0.85rem", color: "#A89880", lineHeight: 1.7 }}>{item.value}</p>
+                          <p style={{ fontSize: "0.82rem", color: C.inkMid, lineHeight: 1.75 }}>{item.value}</p>
                         </div>
                       ))}
                     </div>
@@ -817,13 +742,13 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="reveal" style={{ textAlign: "center", marginTop: "4rem", maxWidth: "680px", margin: "4rem auto 0" }}>
+          <div className="reveal" style={{ textAlign: "center", marginTop: "4rem", maxWidth: "660px", margin: "4rem auto 0" }}>
             <p style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "1.1rem",
               fontStyle: "italic",
-              color: "#C9A96E",
-              lineHeight: 1.7,
+              color: C.gold,
+              lineHeight: 1.75,
             }}>
               "Quando essa associação se constrói, a escolha deixa de ser comparativa e passa a ser natural. A Forneria se torna o lugar certo para aquele tipo de momento."
             </p>
@@ -832,7 +757,7 @@ export default function Home() {
       </section>
 
       {/* ─── 04. SISTEMA DIGITAL ────────────────────────────────────── */}
-      <section style={{ padding: "6rem 0", backgroundColor: "#0A1224" }}>
+      <section style={{ padding: "6rem 0", backgroundColor: C.ivoryMid }}>
         <div className="container">
           <div className="reveal" style={{ textAlign: "center", marginBottom: "4rem" }}>
             <SectionLabel number="04." label="Sistema Digital de Marca" />
@@ -840,59 +765,55 @@ export default function Home() {
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(2rem, 4vw, 3rem)",
               fontWeight: 700,
-              color: "#F5F0E8",
+              color: C.ink,
               marginBottom: "1.5rem",
             }}>
               Do Desejo à Fidelização:<br />
-              <span style={{ color: "#C9A96E" }}>O Funil Sensorial</span>
+              <span style={{ color: C.gold }}>O Funil Sensorial</span>
             </h2>
-            <p style={{ fontSize: "1rem", lineHeight: 1.9, color: "#A89880", maxWidth: "680px", margin: "0 auto" }}>
+            <p style={{ fontSize: "0.97rem", lineHeight: 1.95, color: C.inkMid, maxWidth: "660px", margin: "0 auto" }}>
               O crescimento da Forneria não está ligado ao volume de conteúdo, mas à coerência da experiência ao longo de toda a jornada. Antes de escolher, o cliente sente. Antes de decidir, ele imagina. Antes de voltar, ele compara o que viveu com o que esperava.
             </p>
           </div>
 
           {/* Canais */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.5rem", marginBottom: "5rem" }} className="reveal">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: "1.25rem", marginBottom: "5rem" }} className="reveal">
             {CANAIS.map((canal, i) => (
               <div key={canal.canal} style={{
                 padding: "2rem",
-                background: "rgba(13,27,62,0.5)",
-                border: "1px solid rgba(201,169,110,0.15)",
+                background: C.ivory,
+                border: `1px solid ${C.separator}`,
                 textAlign: "center",
                 position: "relative",
                 overflow: "hidden",
               }}>
-                <div style={{
-                  position: "absolute", top: 0, left: 0, right: 0, height: "2px",
-                  background: "linear-gradient(90deg, transparent, #C9A96E, transparent)",
-                  opacity: 0.6,
-                }} />
+                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "2px", background: `linear-gradient(90deg, transparent, ${C.gold}, transparent)`, opacity: 0.5 }} />
                 <span style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "2.5rem",
+                  fontSize: "2.2rem",
                   fontWeight: 900,
-                  color: "rgba(201,169,110,0.15)",
+                  color: `rgba(168,132,74,0.1)`,
                   position: "absolute",
                   top: "0.5rem",
                   right: "1rem",
                 }}>{String(i + 1).padStart(2, "0")}</span>
                 <h4 style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "1rem",
+                  fontSize: "0.97rem",
                   fontWeight: 600,
-                  color: "#F5F0E8",
+                  color: C.ink,
                   marginBottom: "0.75rem",
                 }}>{canal.canal}</h4>
                 <span style={{
-                  fontSize: "0.7rem",
+                  fontSize: "0.65rem",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "#C9A96E",
+                  color: C.gold,
                   fontWeight: 700,
                   display: "block",
                   marginBottom: "0.5rem",
                 }}>{canal.funcao}</span>
-                <p style={{ fontSize: "0.85rem", color: "#A89880", lineHeight: 1.7 }}>{canal.descricao}</p>
+                <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.75 }}>{canal.descricao}</p>
               </div>
             ))}
           </div>
@@ -901,29 +822,29 @@ export default function Home() {
           <div className="reveal" style={{ marginBottom: "5rem" }}>
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <SectionLabel number="4.1" label="Instagram: A Vitrine Sensorial" />
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", color: "#F5F0E8", marginBottom: "1rem" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.75rem", color: C.ink, marginBottom: "1rem" }}>
                 As Cinco Frentes Editoriais
               </h3>
-              <p style={{ fontSize: "0.95rem", color: "#A89880", maxWidth: "600px", margin: "0 auto" }}>
+              <p style={{ fontSize: "0.93rem", color: C.inkMid, maxWidth: "580px", margin: "0 auto" }}>
                 O perfil deve deixar de ser um panfleto digital para se tornar uma vitrine sensorial. O algoritmo recompensa retenção, e nada retém mais atenção do que movimento e textura.
               </p>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1rem" }}>
-              {EDITORIAIS.map((ed, i) => (
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(270px, 1fr))", gap: "1rem" }}>
+              {EDITORIAIS.map((ed) => (
                 <div key={ed.title} style={{
                   padding: "1.75rem",
-                  background: "rgba(13,27,62,0.4)",
-                  border: "1px solid rgba(201,169,110,0.1)",
-                  borderLeft: "3px solid rgba(201,169,110,0.5)",
+                  background: C.ivory,
+                  border: `1px solid ${C.separator}`,
+                  borderLeft: `3px solid rgba(168,132,74,0.5)`,
                 }}>
                   <h4 style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "1rem",
+                    fontSize: "0.97rem",
                     fontWeight: 600,
-                    color: "#C9A96E",
+                    color: C.gold,
                     marginBottom: "0.75rem",
                   }}>{ed.title}</h4>
-                  <p style={{ fontSize: "0.85rem", color: "#A89880", lineHeight: 1.8 }}>{ed.desc}</p>
+                  <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.85 }}>{ed.desc}</p>
                 </div>
               ))}
             </div>
@@ -936,33 +857,33 @@ export default function Home() {
                 <SectionLabel number="4.2" label="Delivery Premium" />
                 <h3 style={{
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.8rem",
+                  fontSize: "1.75rem",
                   fontWeight: 700,
-                  color: "#F5F0E8",
+                  color: C.ink,
                   marginBottom: "1.5rem",
                 }}>
                   A Casa Que Chega Até Você
                 </h3>
-                <p style={{ fontSize: "0.95rem", lineHeight: 1.9, color: "#A89880", marginBottom: "2rem" }}>
+                <p style={{ fontSize: "0.93rem", lineHeight: 1.95, color: C.inkMid, marginBottom: "2rem" }}>
                   O delivery não pode ser tratado como transporte de pizza. Ele precisa ser tratado como extensão da casa.
                 </p>
-                <div style={{ display: "grid", gap: "1rem" }}>
+                <div style={{ display: "grid", gap: "0.75rem" }}>
                   {DELIVERY_ITENS.map((item) => (
                     <div key={item.elemento} style={{
                       padding: "1.25rem 1.5rem",
-                      background: "rgba(8,15,30,0.6)",
-                      border: "1px solid rgba(201,169,110,0.1)",
+                      background: C.ivory,
+                      border: `1px solid ${C.separator}`,
                     }}>
                       <span style={{
-                        fontSize: "0.7rem",
+                        fontSize: "0.62rem",
                         letterSpacing: "0.2em",
                         textTransform: "uppercase",
-                        color: "#C9A96E",
+                        color: C.gold,
                         fontWeight: 700,
                         display: "block",
                         marginBottom: "0.4rem",
                       }}>{item.elemento}</span>
-                      <p style={{ fontSize: "0.85rem", color: "#A89880", lineHeight: 1.7 }}>{item.desc}</p>
+                      <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.75 }}>{item.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -971,7 +892,7 @@ export default function Home() {
                 <img
                   src={IMAGES.heroPizza}
                   alt="Pizza Forneria"
-                  style={{ width: "100%", height: "600px", objectFit: "cover", borderRadius: "2px", filter: "brightness(0.75)" }}
+                  style={{ width: "100%", height: "580px", objectFit: "cover", borderRadius: "1px", filter: "brightness(0.78) saturate(0.85)" }}
                 />
               </div>
             </div>
@@ -981,14 +902,14 @@ export default function Home() {
           <div className="reveal">
             <div style={{ textAlign: "center", marginBottom: "3rem" }}>
               <SectionLabel number="4.3" label="Google Meu Negócio — Dominância Local" />
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.8rem", color: "#F5F0E8", marginBottom: "1rem" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.75rem", color: C.ink, marginBottom: "1rem" }}>
                 A Forneria como resposta mais confiável
               </h3>
-              <p style={{ fontSize: "0.95rem", color: "#A89880", maxWidth: "600px", margin: "0 auto" }}>
+              <p style={{ fontSize: "0.93rem", color: C.inkMid, maxWidth: "580px", margin: "0 auto" }}>
                 Quando alguém buscar "pizza Asa Sul", "pizzaria Park Sul", "pizza premium Brasília" ou "pizzaria com vinho Brasília", a Forneria precisa aparecer como a resposta mais confiável e mais desejável da lista.
               </p>
             </div>
-            <div style={{ display: "grid", gap: "1rem" }}>
+            <div style={{ display: "grid", gap: "0.75rem" }}>
               {GOOGLE_ACOES.map((acao, i) => (
                 <div key={acao.acao} style={{
                   display: "grid",
@@ -996,25 +917,25 @@ export default function Home() {
                   gap: "2rem",
                   alignItems: "start",
                   padding: "1.5rem 2rem",
-                  background: "rgba(13,27,62,0.4)",
-                  border: "1px solid rgba(201,169,110,0.1)",
+                  background: C.ivory,
+                  border: `1px solid ${C.separator}`,
                 }}>
                   <span style={{
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.5rem",
+                    fontSize: "1.4rem",
                     fontWeight: 900,
-                    color: "rgba(201,169,110,0.3)",
+                    color: `rgba(168,132,74,0.25)`,
                     minWidth: "2rem",
                   }}>{String(i + 1).padStart(2, "0")}</span>
                   <div>
                     <h4 style={{
                       fontFamily: "'Playfair Display', serif",
-                      fontSize: "1rem",
+                      fontSize: "0.97rem",
                       fontWeight: 600,
-                      color: "#F5F0E8",
+                      color: C.ink,
                       marginBottom: "0.5rem",
                     }}>{acao.acao}</h4>
-                    <p style={{ fontSize: "0.85rem", color: "#A89880", lineHeight: 1.8 }}>{acao.como}</p>
+                    <p style={{ fontSize: "0.83rem", color: C.inkMid, lineHeight: 1.85 }}>{acao.como}</p>
                   </div>
                 </div>
               ))}
@@ -1024,26 +945,26 @@ export default function Home() {
       </section>
 
       {/* ─── CLOSING HERO ───────────────────────────────────────────── */}
-      <section style={{ position: "relative", height: "60vh", minHeight: "400px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+      <section style={{ position: "relative", height: "55vh", minHeight: "380px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
         <div style={{
           position: "absolute", inset: 0,
           backgroundImage: `url(${IMAGES.heroMesa})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          filter: "brightness(0.3)",
+          filter: "brightness(0.28) saturate(0.75)",
         }} />
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(180deg, rgba(8,15,30,0.7) 0%, rgba(8,15,30,0.2) 50%, rgba(8,15,30,0.7) 100%)",
+          background: "linear-gradient(180deg, rgba(248,244,238,0.6) 0%, rgba(28,20,16,0.1) 30%, rgba(28,20,16,0.1) 70%, rgba(248,244,238,0.6) 100%)",
         }} />
         <div style={{ position: "relative", zIndex: 2, textAlign: "center", padding: "0 2rem", maxWidth: "800px" }}>
           <GoldOrnament />
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(1.8rem, 4vw, 3.2rem)",
+            fontSize: "clamp(1.7rem, 4vw, 3rem)",
             fontWeight: 700,
-            color: "#F5F0E8",
-            lineHeight: 1.3,
+            color: "#F8F4EE",
+            lineHeight: 1.35,
             margin: "1.5rem 0",
             textShadow: "0 4px 30px rgba(0,0,0,0.6)",
           }}>
@@ -1053,10 +974,10 @@ export default function Home() {
           <GoldOrnament />
           <p style={{
             fontFamily: "'Lato', sans-serif",
-            fontSize: "0.75rem",
+            fontSize: "0.7rem",
             letterSpacing: "0.3em",
             textTransform: "uppercase",
-            color: "#A89880",
+            color: "rgba(248,244,238,0.45)",
             marginTop: "1.5rem",
           }}>
             Forneria di Capri · Documento Interno · Confidencial · 2025
@@ -1067,31 +988,31 @@ export default function Home() {
       {/* ─── FOOTER ─────────────────────────────────────────────────── */}
       <footer style={{
         padding: "3rem 0",
-        backgroundColor: "#040810",
-        borderTop: "1px solid rgba(201,169,110,0.1)",
+        backgroundColor: C.ivoryDeep,
+        borderTop: `1px solid ${C.separator}`,
       }}>
         <div className="container" style={{ textAlign: "center" }}>
-          <div style={{ marginBottom: "1.5rem" }}>
+          <div style={{ marginBottom: "1rem" }}>
             <span style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "1.2rem",
+              fontSize: "1.1rem",
               fontWeight: 700,
               letterSpacing: "0.2em",
-              color: "#F5F0E8",
+              color: C.ink,
               textTransform: "uppercase",
             }}>FORNERIA</span>
             <span style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "0.9rem",
+              fontSize: "0.85rem",
               fontStyle: "italic",
-              color: "#C9A96E",
+              color: C.gold,
               marginLeft: "0.5rem",
             }}>di Capri</span>
           </div>
-          <p style={{ fontSize: "0.75rem", color: "#4A3A2A", letterSpacing: "0.15em", textTransform: "uppercase" }}>
+          <p style={{ fontSize: "0.72rem", color: C.inkLight, letterSpacing: "0.15em", textTransform: "uppercase" }}>
             Park Sul · Asa Sul · Brasília
           </p>
-          <p style={{ fontSize: "0.7rem", color: "#3A2A1A", marginTop: "0.75rem" }}>
+          <p style={{ fontSize: "0.68rem", color: C.separator, marginTop: "0.75rem" }}>
             Manual de Posicionamento Estratégico de Marca · Versão 2025 · Uso Exclusivo da Equipe de Marca
           </p>
         </div>
