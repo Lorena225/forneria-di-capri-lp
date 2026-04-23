@@ -7,6 +7,49 @@
 
 import { useEffect, useState } from "react";
 
+// Logo oficial inline — garante renderização correta das fontes
+function ForneriLogo({ height = 44, color = "#1C1410" }: { height?: number; color?: string }) {
+  const scale = height / 90;
+  const w = Math.round(320 * scale);
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 320 90"
+      width={w}
+      height={height}
+      aria-label="Forneria di Capri"
+      role="img"
+    >
+      {/* FORNERIA — Playfair Display bold uppercase */}
+      <text
+        x="160"
+        y="46"
+        textAnchor="middle"
+        fontFamily="'Playfair Display', Georgia, serif"
+        fontSize="38"
+        fontWeight="700"
+        letterSpacing="10"
+        fill={color}
+      >
+        FORNERIA
+      </text>
+      {/* di Capri — Dancing Script cursive */}
+      <text
+        x="160"
+        y="78"
+        textAnchor="middle"
+        fontFamily="'Dancing Script', 'Brush Script MT', cursive"
+        fontSize="30"
+        fontWeight="600"
+        letterSpacing="1"
+        fill={color}
+      >
+        di Capri
+      </text>
+    </svg>
+  );
+}
+
 // Image URLs from generated assets
 const IMAGES = {
   heroPizza:  "https://d2xsxph8kpxj0f.cloudfront.net/310519663589889937/CjCg7aYqdUqHHDQn8P5YNB/hero_pizza_forno-euWoShyhvzJ8bDVetYPRn7.webp",
@@ -213,24 +256,7 @@ export default function Home() {
         borderBottom: `1px solid ${C.separator}`,
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <span style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "1rem",
-            fontWeight: 700,
-            letterSpacing: "0.18em",
-            color: C.ink,
-            textTransform: "uppercase",
-          }}>FORNERIA</span>
-          <span style={{
-            fontFamily: "'Playfair Display', serif",
-            fontSize: "0.7rem",
-            fontStyle: "italic",
-            color: C.gold,
-            letterSpacing: "0.1em",
-            marginTop: "-2px",
-          }}>di Capri</span>
-        </div>
+        <ForneriLogo height={44} color={C.ink} />
         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <span style={{ color: C.gold, fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", fontFamily: "'Lato', sans-serif" }}>
             Posicionamento de Marca
@@ -992,22 +1018,8 @@ export default function Home() {
         borderTop: `1px solid ${C.separator}`,
       }}>
         <div className="container" style={{ textAlign: "center" }}>
-          <div style={{ marginBottom: "1rem" }}>
-            <span style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "1.1rem",
-              fontWeight: 700,
-              letterSpacing: "0.2em",
-              color: C.ink,
-              textTransform: "uppercase",
-            }}>FORNERIA</span>
-            <span style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "0.85rem",
-              fontStyle: "italic",
-              color: C.gold,
-              marginLeft: "0.5rem",
-            }}>di Capri</span>
+          <div style={{ marginBottom: "1rem", display: "flex", justifyContent: "center", opacity: 0.85 }}>
+            <ForneriLogo height={52} color={C.inkMid} />
           </div>
           <p style={{ fontSize: "0.72rem", color: C.inkLight, letterSpacing: "0.15em", textTransform: "uppercase" }}>
             Park Sul · Asa Sul · Brasília
