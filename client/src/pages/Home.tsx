@@ -406,7 +406,7 @@ export default function Home() {
             </div>
             <div style={{ position: "relative" }}>
               <img
-                src="/manus-storage/forneria_casa_ambiente_8bd51d0e.jpg"
+                src="/manus-storage/forneria_casa_ambiente_94717e39.jpg"
                 alt="Forneria di Capri — A casa"
                 style={{ width: "100%", height: "560px", objectFit: "cover", objectPosition: "center top", borderRadius: "1px", filter: "brightness(0.95) saturate(1.05)" }}
               />
